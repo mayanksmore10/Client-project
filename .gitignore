@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+atlas_vector_index.json
+.postman/
+postman/

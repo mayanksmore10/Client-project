@@ -1,0 +1,424 @@
+[
+  {
+    "package_id": "GOA_3D2N_001",
+    "title": "Mumbai to Goa 3D/2N Package",
+    "from": "Mumbai",
+    "destination": "Goa",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 10000,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Transfers"
+    ],
+    "exclusions": [
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Mumbai to Goa and hotel check-in",
+      "Day 2: Goa sightseeing",
+      "Day 3: Checkout and return"
+    ],
+    "package_url": "/packages/GOA_3D2N_001",
+    "embedding": []
+  },
+  {
+    "package_id": "GOA_4D3N_002",
+    "title": "Mumbai to Goa Beach Bliss 4D/3N",
+    "from": "Mumbai",
+    "destination": "Goa",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 14500,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Dinner",
+      "Airport Transfers",
+      "Water Sports"
+    ],
+    "exclusions": [
+      "Personal expenses",
+      "Alcoholic beverages"
+    ],
+    "itinerary": [
+      "Day 1: Arrival in Goa, hotel check-in, leisure evening",
+      "Day 2: North Goa beach and fort tour",
+      "Day 3: South Goa sightseeing and water sports",
+      "Day 4: Checkout and departure"
+    ],
+    "package_url": "/packages/GOA_4D3N_002",
+    "embedding": []
+  },
+  {
+    "package_id": "GOA_2D1N_003",
+    "title": "Budget Goa Getaway 2D/1N",
+    "from": "Mumbai",
+    "destination": "Goa",
+    "days": 2,
+    "nights": 1,
+    "price_per_person": 6500,
+    "gst_included": false,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast"
+    ],
+    "exclusions": [
+      "Transfers",
+      "Personal expenses",
+      "GST"
+    ],
+    "itinerary": [
+      "Day 1: Arrival, hotel check-in, beach visit",
+      "Day 2: Checkout and return"
+    ],
+    "package_url": "/packages/GOA_2D1N_003",
+    "embedding": []
+  },
+  {
+    "package_id": "GOA_5D4N_008",
+    "title": "Mumbai to Goa Premium 5D/4N",
+    "from": "Mumbai",
+    "destination": "Goa",
+    "days": 5,
+    "nights": 4,
+    "price_per_person": 21000,
+    "gst_included": true,
+    "inclusions": [
+      "4-star Accommodation",
+      "Breakfast",
+      "Dinner",
+      "Airport Transfers",
+      "Cruise Party",
+      "Water Sports"
+    ],
+    "exclusions": [
+      "Personal expenses",
+      "Alcoholic beverages",
+      "Optional excursions"
+    ],
+    "itinerary": [
+      "Day 1: Arrival, hotel check-in, welcome dinner",
+      "Day 2: North Goa beaches and forts",
+      "Day 3: South Goa sightseeing and water sports",
+      "Day 4: Sunset cruise party",
+      "Day 5: Checkout and departure"
+    ],
+    "package_url": "/packages/GOA_5D4N_008",
+    "embedding": []
+  },
+  {
+    "package_id": "MANALI_5D4N_004",
+    "title": "Delhi to Manali Snow Adventure 5D/4N",
+    "from": "Delhi",
+    "destination": "Manali",
+    "days": 5,
+    "nights": 4,
+    "price_per_person": 18500,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Dinner",
+      "Volvo Bus Transfers",
+      "Sightseeing"
+    ],
+    "exclusions": [
+      "Personal expenses",
+      "Adventure activity charges"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Manali overnight journey",
+      "Day 2: Arrival and local sightseeing",
+      "Day 3: Solang Valley excursion",
+      "Day 4: Manali local sightseeing",
+      "Day 5: Departure to Delhi"
+    ],
+    "package_url": "/packages/MANALI_5D4N_004",
+    "embedding": []
+  },
+  {
+    "package_id": "MANALI_3D2N_007",
+    "title": "Quick Manali Escape 3D/2N",
+    "from": "Chandigarh",
+    "destination": "Manali",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 8500,
+    "gst_included": false,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast"
+    ],
+    "exclusions": [
+      "Transfers",
+      "GST",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Arrival and local market visit",
+      "Day 2: Solang Valley and Vashisht temple",
+      "Day 3: Checkout and departure"
+    ],
+    "package_url": "/packages/MANALI_3D2N_007",
+    "embedding": []
+  },
+  {
+    "package_id": "MANALI_6D5N_009",
+    "title": "Manali-Kasol Backpacker Trail 6D/5N",
+    "from": "Delhi",
+    "destination": "Manali",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 16000,
+    "gst_included": true,
+    "inclusions": [
+      "Hostel Accommodation",
+      "Breakfast",
+      "Shared Cab",
+      "Trekking Guide"
+    ],
+    "exclusions": [
+      "Meals other than breakfast",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Manali overnight journey",
+      "Day 2: Old Manali exploration",
+      "Day 3: Manali to Kasol",
+      "Day 4: Kasol-Tosh trek",
+      "Day 5: Kasol to Manali",
+      "Day 6: Departure to Delhi"
+    ],
+    "package_url": "/packages/MANALI_6D5N_009",
+    "embedding": []
+  },
+  {
+    "package_id": "JAIPUR_3D2N_005",
+    "title": "Delhi to Jaipur Heritage Tour 3D/2N",
+    "from": "Delhi",
+    "destination": "Jaipur",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 9000,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "AC Cab",
+      "Guided Sightseeing"
+    ],
+    "exclusions": [
+      "Entry tickets",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Jaipur, Amber Fort visit",
+      "Day 2: City Palace, Hawa Mahal, local markets",
+      "Day 3: Checkout and return to Delhi"
+    ],
+    "package_url": "/packages/JAIPUR_3D2N_005",
+    "embedding": []
+  },
+  {
+    "package_id": "JAIPUR_2D1N_010",
+    "title": "Jaipur Weekend Dash 2D/1N",
+    "from": "Delhi",
+    "destination": "Jaipur",
+    "days": 2,
+    "nights": 1,
+    "price_per_person": 5500,
+    "gst_included": false,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Shared Cab"
+    ],
+    "exclusions": [
+      "Entry tickets",
+      "Personal expenses",
+      "GST"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Jaipur, Hawa Mahal and local market visit",
+      "Day 2: Amber Fort and return to Delhi"
+    ],
+    "package_url": "/packages/JAIPUR_2D1N_010",
+    "embedding": []
+  },
+  {
+    "package_id": "KERALA_6D5N_006",
+    "title": "Kochi to Munnar-Alleppey Backwaters 6D/5N",
+    "from": "Kochi",
+    "destination": "Kerala",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 22000,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Dinner",
+      "Houseboat Stay",
+      "Private Cab"
+    ],
+    "exclusions": [
+      "Lunch",
+      "Personal expenses",
+      "Entry fees"
+    ],
+    "itinerary": [
+      "Day 1: Arrival in Kochi, local sightseeing",
+      "Day 2: Kochi to Munnar, tea garden visit",
+      "Day 3: Munnar sightseeing",
+      "Day 4: Munnar to Alleppey, houseboat check-in",
+      "Day 5: Alleppey backwaters cruise",
+      "Day 6: Checkout and departure"
+    ],
+    "package_url": "/packages/KERALA_6D5N_006",
+    "embedding": []
+  },
+  {
+    "package_id": "KERALA_4D3N_011",
+    "title": "Kerala Highlights Express 4D/3N",
+    "from": "Kochi",
+    "destination": "Kerala",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 15000,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Private Cab",
+      "Houseboat Lunch Cruise"
+    ],
+    "exclusions": [
+      "Dinner",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Arrival in Kochi, Fort Kochi walking tour",
+      "Day 2: Kochi to Alleppey, day houseboat cruise",
+      "Day 3: Alleppey to Kumarakom, backwater village visit",
+      "Day 4: Checkout and departure"
+    ],
+    "package_url": "/packages/KERALA_4D3N_011",
+    "embedding": []
+  },
+  {
+    "package_id": "RISHIKESH_3D2N_012",
+    "title": "Delhi to Rishikesh Adventure 3D/2N",
+    "from": "Delhi",
+    "destination": "Rishikesh",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 7500,
+    "gst_included": true,
+    "inclusions": [
+      "Camp Accommodation",
+      "All Meals",
+      "River Rafting",
+      "Bonfire"
+    ],
+    "exclusions": [
+      "Personal expenses",
+      "Optional activities"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Rishikesh, camp check-in, bonfire evening",
+      "Day 2: River rafting and local temple visits",
+      "Day 3: Checkout and return to Delhi"
+    ],
+    "package_url": "/packages/RISHIKESH_3D2N_012",
+    "embedding": []
+  },
+  {
+    "package_id": "UDAIPUR_3D2N_013",
+    "title": "Udaipur City of Lakes 3D/2N",
+    "from": "Ahmedabad",
+    "destination": "Udaipur",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 11500,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Boat Ride",
+      "Guided City Tour"
+    ],
+    "exclusions": [
+      "Entry tickets",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Arrival, City Palace visit",
+      "Day 2: Lake Pichola boat ride and Saheliyon ki Bari",
+      "Day 3: Checkout and departure"
+    ],
+    "package_url": "/packages/UDAIPUR_3D2N_013",
+    "embedding": []
+  },
+  {
+    "package_id": "SHIMLA_4D3N_014",
+    "title": "Delhi to Shimla Hill Retreat 4D/3N",
+    "from": "Delhi",
+    "destination": "Shimla",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 13000,
+    "gst_included": false,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Sightseeing Cab"
+    ],
+    "exclusions": [
+      "GST",
+      "Personal expenses",
+      "Toy train tickets"
+    ],
+    "itinerary": [
+      "Day 1: Delhi to Shimla",
+      "Day 2: Mall Road and Ridge sightseeing",
+      "Day 3: Kufri excursion",
+      "Day 4: Checkout and return to Delhi"
+    ],
+    "package_url": "/packages/SHIMLA_4D3N_014",
+    "embedding": []
+  },
+  {
+    "package_id": "ANDAMAN_5D4N_015",
+    "title": "Port Blair to Havelock Island Escape 5D/4N",
+    "from": "Chennai",
+    "destination": "Andaman",
+    "days": 5,
+    "nights": 4,
+    "price_per_person": 28000,
+    "gst_included": true,
+    "inclusions": [
+      "Accommodation",
+      "Breakfast",
+      "Ferry Transfers",
+      "Scuba Diving Session"
+    ],
+    "exclusions": [
+      "Lunch",
+      "Dinner",
+      "Personal expenses"
+    ],
+    "itinerary": [
+      "Day 1: Arrival in Port Blair, Cellular Jail visit",
+      "Day 2: Ferry to Havelock Island",
+      "Day 3: Radhanagar Beach and scuba diving",
+      "Day 4: Havelock leisure day",
+      "Day 5: Return to Port Blair and departure"
+    ],
+    "package_url": "/packages/ANDAMAN_5D4N_015",
+    "embedding": []
+  }
+]
