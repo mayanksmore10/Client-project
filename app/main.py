@@ -1,15 +1,13 @@
 import logging
 from contextlib import asynccontextmanager
-
 from beanie import init_beanie
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from motor.motor_asyncio import AsyncIOMotorClient
-
 from app.core.config import settings
 from app.models.package import TourPackage
-from app.routers import packages, recommendations
+from app.models.user import User
+from app.routers import auth, packages, recommendations
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,7 +17,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     client = AsyncIOMotorClient(settings.mongodb_uri)
     db = client[settings.mongodb_db_name]
-    await init_beanie(database=db, document_models=[TourPackage])
+    await init_beanie(database=db, document_models=[TourPackage, User])
     logger.info("Connected to MongoDB Atlas database '%s'", settings.mongodb_db_name)
 
     yield
@@ -38,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router)
 app.include_router(recommendations.router)
 app.include_router(packages.router)
 

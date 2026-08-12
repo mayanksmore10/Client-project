@@ -1,17 +1,3 @@
-"""
-Ingestion script (design doc section 6, steps 1-3):
-  - reads package JSON documents
-  - generates an embedding per package via Gemini
-  - upserts each package (with its embedding) into MongoDB Atlas
-
-Usage:
-    python -m scripts.ingest_packages data/dummy_packages.json
-
-Make sure your .env is configured (MONGODB_URI, GEMINI_API_KEY) before running.
-Also make sure the Atlas Vector Search index has been created (see README) —
-this script only writes the vectors, it does not create the index itself.
-"""
-
 import asyncio
 import json
 import sys

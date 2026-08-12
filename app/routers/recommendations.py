@@ -12,10 +12,6 @@ router = APIRouter(prefix="/recommend-packages", tags=["recommendations"])
 
 @router.post("", response_model=RecommendationResponse)
 async def recommendPackages(request: RecommendationRequest) -> RecommendationResponse:
-    """
-    Accepts a free-text travel requirement and returns a grounded,
-    conversational recommendation plus package cards (design doc section 12).
-    """
     try:
         return await recommendation_service.recommendPackages(
             query=request.query, top_k=request.top_k

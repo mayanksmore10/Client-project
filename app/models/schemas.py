@@ -1,9 +1,3 @@
-"""
-Request / response schemas for the /recommend-packages endpoint.
-These are separate from the Beanie document model so the API contract
-can evolve independently of the storage schema.
-"""
-
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -20,7 +14,7 @@ class RecommendationRequest(BaseModel):
 
     @field_validator("query")
     @classmethod
-    def max_words(cls, v: str) -> str:
+    def maxWords(cls, v: str) -> str:
         if len(v.split()) > 30:
             raise ValueError("Query must not exceed 30 words")
         return v

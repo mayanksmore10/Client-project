@@ -38,7 +38,7 @@ def _toPackageCard(pkg: dict) -> PackageCard:
         gst_included=pkg.get("gst_included", False),
         inclusions=pkg.get("inclusions", []),
         itinerary_summary=_itinerarySummary(pkg.get("itinerary", [])),
-        package_url=pkg.get("package_url", ""),
+        package_url=f"{settings.base_url.rstrip('/')}{pkg.get('package_url', '')}",
         score=pkg.get("score"),
     )
 

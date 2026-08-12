@@ -1,9 +1,3 @@
-"""
-Application configuration, loaded from environment variables / .env file.
-Nothing sensitive is hardcoded here — see .env.example for the variables
-you need to set.
-"""
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -25,10 +19,16 @@ class Settings(BaseSettings):
     embedding_dimensions: int = 768        # must match the Atlas vector index config
 
     # --- App ---
-    app_name: str = "AI Tour Package Recommendation API"
+    app_name: str = "Sahyadri Tours and Travels"
+    base_url: str = "http://localhost:8000"
     cors_allow_origins: list[str] = ["*"]
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+
+    # --- JWT Auth ---
+    jwt_secret_key: str
+    jwt_algorithm: str = "HS256"
+    jwt_expire_minutes: int = 60 * 24  # 24 hours
 
 
 settings = Settings()
