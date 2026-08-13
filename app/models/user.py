@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
@@ -8,6 +8,10 @@ class User(Document):
     email: EmailStr
     password_hash: str  # never the plain password — see core/security.py
     full_name: str | None = None
+    phone: str | None = None
+    gender: str | None = None  # "male" / "female" / "other"
+    date_of_birth: date | None = None
+    profile_photo_url: str | None = None
     role: str = "user"  # room for "admin" later, per the design doc's scope note
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -38,4 +42,20 @@ class UserResponse(BaseModel):
     id: str
     email: str
     full_name: str | None
+    phone: str | None = None
+    gender: str | None = None
+    date_of_birth: date | None = None
+    profile_photo_url: str | None = None
     role: str
+
+
+class UpdateProfileRequest(BaseModel):
+    full_name: str | None = None
+    phone: str | None = None
+    gender: str | None = None
+    date_of_birth: date | None = None
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str = Field(..., min_length=8)

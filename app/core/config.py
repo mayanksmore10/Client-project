@@ -30,5 +30,8 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24  # 24 hours
 
+    # --- Support ---
+    whatsapp_number: str = "919999999999"  # default placeholder
+
 
 settings = Settings()
