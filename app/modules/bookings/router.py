@@ -71,10 +71,6 @@ async def initiateBooking(
     request: InitiateBookingRequest,
     current_user: User = Depends(getCurrentUser),
 ):
-    """
-    Step 1: Create a draft booking when user clicks 'Book Now'.
-    Calculates price breakdown and returns the booking_id for subsequent steps.
-    """
     package = await TourPackage.find_one(TourPackage.package_id == request.package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
@@ -124,7 +120,6 @@ async def saveGuests(
     request: SaveGuestsRequest,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Step 2: Save guest details (name, age, gender, ID proof) for each adult."""
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
@@ -150,7 +145,6 @@ async def setPaymentMethod(
     request: SetPaymentMethodRequest,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Step 3: Set payment method — upi, card, net_banking, or pay_at_counter."""
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
@@ -169,10 +163,6 @@ async def confirmBooking(
     booking_id: str,
     current_user: User = Depends(getCurrentUser),
 ):
-    """
-    Step 4: Final confirmation.
-    Validates all data is filled, changes status from draft → confirmed.
-    """
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
