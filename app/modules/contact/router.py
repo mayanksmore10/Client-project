@@ -1,16 +1,13 @@
-"""Contact & support APIs — contact form submission and WhatsApp link."""
-
 from fastapi import APIRouter
 
 from app.core.config import settings
-from app.models.contact import ContactEnquiry, ContactRequest
+from app.modules.contact.models import ContactEnquiry, ContactRequest
 
 router = APIRouter(tags=["contact & support"])
 
 
 @router.post("/contact", status_code=201)
 async def submitContact(request: ContactRequest):
-    """Submit a contact form / enquiry."""
     enquiry = ContactEnquiry(
         name=request.name,
         email=request.email,
@@ -23,7 +20,6 @@ async def submitContact(request: ContactRequest):
 
 @router.get("/support/whatsapp")
 async def getWhatsAppLink():
-    """Returns the WhatsApp click-to-chat URL."""
     number = settings.whatsapp_number
     message = "Hi, I need help with Sahyadri Tours and Travels."
     url = f"https://wa.me/{number}?text={message}"

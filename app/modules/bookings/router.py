@@ -1,12 +1,10 @@
-"""Booking flow — initiate, guest details, payment method, confirm, cancel, history."""
-
 from datetime import date, datetime
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.core.dependencies import getCurrentUser
-from app.models.booking import (
+from app.modules.bookings.models import (
     Booking,
     BookingDetailResponse,
     BookingHistoryResponse,
@@ -16,8 +14,8 @@ from app.models.booking import (
     SaveGuestsRequest,
     SetPaymentMethodRequest,
 )
-from app.models.package import TourPackage
-from app.models.user import User
+from app.modules.packages.models import TourPackage
+from app.modules.auth.models import User
 
 router = APIRouter(prefix="/bookings", tags=["bookings"])
 
@@ -237,7 +235,6 @@ async def myBookings(
         return {"upcoming": [], "past": [_toSummary(b) for b in bookings]}
 
     else:
-        # Default: return both upcoming and past
         all_bookings = await Booking.find(
             Booking.user_id == user_id,
             Booking.status != "draft",

@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.core.config import settings
-from app.services.embedding_service import embedPackage
+from app.modules.recommendations.services.embedding_service import embedPackage
 
 
 async def ingest(file_path: str):

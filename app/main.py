@@ -1,19 +1,17 @@
 import logging
 from contextlib import asynccontextmanager
-from beanie import init_beanie
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
-
 from app.core.config import settings
-from app.models.booking import Booking
-from app.models.contact import ContactEnquiry
-from app.models.package import TourPackage
-from app.models.review import Review
-from app.models.user import User
-from app.routers import auth, bookings, contact, home, packages, recommendations
+from app.core.database import connect_to_mongo, close_mongo_connection
+from app.modules.auth import router as auth
+from app.modules.bookings import router as bookings
+from app.modules.contact import router as contact
+from app.modules.home import router as home
+from app.modules.packages import router as packages
+from app.modules.recommendations import router as recommendations
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,18 +19,9 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client[settings.mongodb_db_name]
-    await init_beanie(
-        database=db,
-        document_models=[TourPackage, User, Booking, Review, ContactEnquiry],
-    )
-    logger.info("Connected to MongoDB Atlas database '%s'", settings.mongodb_db_name)
-
+    await connect_to_mongo()
     yield
-
-    client.close()
-    logger.info("MongoDB connection closed")
+    await close_mongo_connection()
 
 
 app = FastAPI(title=settings.app_name, lifespan=lifespan)

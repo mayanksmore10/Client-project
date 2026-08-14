@@ -22,7 +22,14 @@
       "Day 3: Checkout and return"
     ],
     "package_url": "/packages/GOA_3D2N_001",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "friends",
+      "couples",
+      "foodies",
+      "beach lovers"
+    ]
   },
   {
     "package_id": "GOA_4D3N_002",
@@ -51,7 +58,14 @@
       "Day 4: Checkout and departure"
     ],
     "package_url": "/packages/GOA_4D3N_002",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "honeymoon",
+      "couples",
+      "friends",
+      "water sports enthusiasts",
+      "photographers"
+    ]
   },
   {
     "package_id": "GOA_2D1N_003",
@@ -76,7 +90,14 @@
       "Day 2: Checkout and return"
     ],
     "package_url": "/packages/GOA_2D1N_003",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "solo",
+      "friends",
+      "backpackers",
+      "budget travelers",
+      "party goers"
+    ]
   },
   {
     "package_id": "GOA_5D4N_008",
@@ -108,7 +129,14 @@
       "Day 5: Checkout and departure"
     ],
     "package_url": "/packages/GOA_5D4N_008",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "honeymoon",
+      "luxury",
+      "wellness",
+      "senior"
+    ]
   },
   {
     "package_id": "MANALI_5D4N_004",
@@ -138,7 +166,14 @@
       "Day 5: Departure to Delhi"
     ],
     "package_url": "/packages/MANALI_5D4N_004",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "friends",
+      "adventure",
+      "nature lovers",
+      "snow seekers"
+    ]
   },
   {
     "package_id": "MANALI_3D2N_007",
@@ -164,7 +199,13 @@
       "Day 3: Checkout and departure"
     ],
     "package_url": "/packages/MANALI_3D2N_007",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "friends",
+      "solo",
+      "photographers",
+      "short getaway seekers"
+    ]
   },
   {
     "package_id": "MANALI_6D5N_009",
@@ -194,7 +235,14 @@
       "Day 6: Departure to Delhi"
     ],
     "package_url": "/packages/MANALI_6D5N_009",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "solo",
+      "backpackers",
+      "adventure",
+      "thrill seekers",
+      "trekkers"
+    ]
   },
   {
     "package_id": "JAIPUR_3D2N_005",
@@ -221,7 +269,14 @@
       "Day 3: Checkout and return to Delhi"
     ],
     "package_url": "/packages/JAIPUR_3D2N_005",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "senior",
+      "couples",
+      "history buffs",
+      "culture enthusiasts"
+    ]
   },
   {
     "package_id": "JAIPUR_2D1N_010",
@@ -247,7 +302,14 @@
       "Day 2: Amber Fort and return to Delhi"
     ],
     "package_url": "/packages/JAIPUR_2D1N_010",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "friends",
+      "couples",
+      "solo",
+      "foodies",
+      "shoppers"
+    ]
   },
   {
     "package_id": "KERALA_6D5N_006",
@@ -279,7 +341,14 @@
       "Day 6: Checkout and departure"
     ],
     "package_url": "/packages/KERALA_6D5N_006",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "honeymoon",
+      "senior",
+      "nature lovers",
+      "wellness"
+    ]
   },
   {
     "package_id": "KERALA_4D3N_011",
@@ -307,7 +376,14 @@
       "Day 4: Checkout and departure"
     ],
     "package_url": "/packages/KERALA_4D3N_011",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "couples",
+      "family",
+      "friends",
+      "photographers",
+      "peace seekers"
+    ]
   },
   {
     "package_id": "RISHIKESH_3D2N_012",
@@ -334,7 +410,14 @@
       "Day 3: Checkout and return to Delhi"
     ],
     "package_url": "/packages/RISHIKESH_3D2N_012",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "adventure",
+      "friends",
+      "solo",
+      "thrill seekers",
+      "spiritual"
+    ]
   },
   {
     "package_id": "UDAIPUR_3D2N_013",
@@ -361,7 +444,14 @@
       "Day 3: Checkout and departure"
     ],
     "package_url": "/packages/UDAIPUR_3D2N_013",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "honeymoon",
+      "couples",
+      "family",
+      "history buffs",
+      "luxury"
+    ]
   },
   {
     "package_id": "SHIMLA_4D3N_014",
@@ -389,7 +479,14 @@
       "Day 4: Checkout and return to Delhi"
     ],
     "package_url": "/packages/SHIMLA_4D3N_014",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "family",
+      "couples",
+      "senior",
+      "nature lovers",
+      "photographers"
+    ]
   },
   {
     "package_id": "ANDAMAN_5D4N_015",
@@ -419,6 +516,13 @@
       "Day 5: Return to Port Blair and departure"
     ],
     "package_url": "/packages/ANDAMAN_5D4N_015",
-    "embedding": []
+    "embedding": [],
+    "traveler_type": [
+      "honeymoon",
+      "family",
+      "adventure",
+      "scuba divers",
+      "beach lovers"
+    ]
   }
 ]

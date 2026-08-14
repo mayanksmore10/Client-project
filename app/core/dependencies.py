@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app.core.security import decodeAccessToken
-from app.models.user import User
+from app.modules.auth.models import User
 
 _bearer_scheme = HTTPBearer(auto_error=True)
 

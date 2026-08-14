@@ -12,8 +12,8 @@ Orchestrates the full pipeline described in design doc section 6:
 import logging
 
 from app.core.config import settings
-from app.models.schemas import PackageCard, RecommendationResponse
-from app.services import embedding_service, gemini_service, vector_search_service
+from app.modules.recommendations.schemas import PackageCard, RecommendationResponse
+from app.modules.recommendations.services import embedding_service, gemini_service, vector_search_service
 
 logger = logging.getLogger(__name__)
 

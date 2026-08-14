@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter
 
-from app.models.booking import Booking
-from app.models.package import TourPackage
-from app.models.review import Review
+from app.modules.bookings.models import Booking
+from app.modules.packages.models import TourPackage
+from app.modules.reviews.models import Review
 
 router = APIRouter(tags=["home"])
 

@@ -2,8 +2,8 @@ import logging
 
 from fastapi import APIRouter, HTTPException
 
-from app.models.schemas import RecommendationRequest, RecommendationResponse
-from app.services import recommendation_service
+from app.modules.recommendations.schemas import RecommendationRequest, RecommendationResponse
+from app.modules.recommendations.services import recommendation_service
 
 logger = logging.getLogger(__name__)
 

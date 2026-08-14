@@ -9,7 +9,7 @@ import logging
 from typing import Any
 
 from app.core.config import settings
-from app.models.package import TourPackage
+from app.modules.packages.models import TourPackage
 
 logger = logging.getLogger(__name__)
 

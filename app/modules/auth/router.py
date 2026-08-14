@@ -5,7 +5,7 @@ import uuid
 from app.core.config import settings
 from app.core.dependencies import getCurrentUser
 from app.core.security import createAccessToken, hashPassword, verifyPassword
-from app.models.user import (
+from app.modules.auth.models import (
     ChangePasswordRequest,
     LoginRequest,
     RegisterRequest,

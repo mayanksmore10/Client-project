@@ -1,14 +1,12 @@
-"""Tour packages — listing, search/filter, detail, available dates, rooms, pricing, reviews."""
-
 from datetime import date
 
 from beanie.operators import In
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.core.dependencies import getCurrentUser
-from app.models.package import TourPackage
-from app.models.review import CreateReviewRequest, Review, ReviewResponse
-from app.models.user import User
+from app.modules.packages.models import TourPackage
+from app.modules.reviews.models import CreateReviewRequest, Review, ReviewResponse
+from app.modules.auth.models import User
 
 router = APIRouter(prefix="/packages", tags=["packages"])
 
