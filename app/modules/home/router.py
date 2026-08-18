@@ -1,5 +1,3 @@
-"""Home page APIs — featured packages, trust stats, destinations, traveler types."""
-
 from fastapi import APIRouter
 
 from app.modules.bookings.models import Booking
@@ -10,15 +8,13 @@ router = APIRouter(tags=["home"])
 
 
 @router.get("/packages/featured")
-async def getFeaturedPackages(limit: int = 6):
-    """Return featured/popular packages for the homepage hero section."""
+async def getFeaturedPackages(limit: int = 6):  
     packages = await TourPackage.find_all(limit=limit).to_list()
     return [p.model_dump(exclude={"embedding"}) for p in packages]
 
 
 @router.get("/stats")
 async def getStats():
-    """Trust signals — total guests, tours completed, reviews count."""
     total_bookings = await Booking.find(Booking.status == "completed").count()
     total_reviews = await Review.find_all().count()
 
@@ -35,7 +31,6 @@ async def getStats():
 
 @router.get("/destinations")
 async def getDestinations():
-    """Return distinct destinations for 'Browse by destination' section."""
     packages = await TourPackage.find_all().to_list()
     destinations = list({p.destination for p in packages})
     destinations.sort()
@@ -44,7 +39,6 @@ async def getDestinations():
 
 @router.get("/traveler-types")
 async def getTravelerTypes():
-    """Return available traveler types across all packages."""
     packages = await TourPackage.find_all().to_list()
     types = set()
     for p in packages:

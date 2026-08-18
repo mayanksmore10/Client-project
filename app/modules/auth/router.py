@@ -1,14 +1,18 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Response, status
 import os
+import secrets
 import uuid
+from datetime import datetime, timedelta
 
 from app.core.config import settings
 from app.core.dependencies import getCurrentUser
 from app.core.security import createAccessToken, hashPassword, verifyPassword
 from app.modules.auth.models import (
     ChangePasswordRequest,
+    ForgotPasswordRequest,
     LoginRequest,
     RegisterRequest,
+    ResetPasswordRequest,
     TokenResponse,
     UpdateProfileRequest,
     User,
@@ -37,7 +41,7 @@ async def register(request: RegisterRequest):
 
 
 @router.post("/login", response_model=TokenResponse)
-async def login(request: LoginRequest):
+async def login(request: LoginRequest, response: Response):
     user = await User.find_one(User.email == request.email)
 
     # Same error for "no such user" and "wrong password" — don't leak which one.
@@ -49,7 +53,30 @@ async def login(request: LoginRequest):
         raise invalid_credentials
 
     token = createAccessToken(user_id=str(user.id), role=user.role)
+
+    # Set HttpOnly & Secure cookie for browser session
+    response.set_cookie(
+        key="access_token",
+        value=token,
+        httponly=True,
+        secure=settings.cookie_secure,
+        samesite=settings.cookie_samesite,
+        max_age=settings.jwt_expire_minutes * 60,
+    )
+
     return TokenResponse(access_token=token)
+
+
+@router.post("/logout")
+async def logout(response: Response):
+    """Logout user by clearing the access_token HttpOnly cookie."""
+    response.delete_cookie(
+        key="access_token",
+        httponly=True,
+        secure=settings.cookie_secure,
+        samesite=settings.cookie_samesite,
+    )
+    return {"message": "Logged out successfully"}
 
 
 @router.get("/me", response_model=UserResponse)
@@ -100,9 +127,11 @@ async def uploadPhoto(
     current_user: User = Depends(getCurrentUser),
 ):
     """Upload a profile photo. Stores locally in /uploads and saves the URL."""
-    # Validate file type
+    # Validate file type by content_type OR extension (Postman may send octet-stream)
     allowed_types = {"image/jpeg", "image/png", "image/webp"}
-    if file.content_type not in allowed_types:
+    allowed_exts = {"jpg", "jpeg", "png", "webp"}
+    ext = (file.filename.rsplit(".", 1)[-1].lower()) if file.filename and "." in file.filename else ""
+    if file.content_type not in allowed_types and ext not in allowed_exts:
         raise HTTPException(status_code=400, detail="Only JPEG, PNG, and WebP images are allowed")
 
     # Create uploads directory if needed
@@ -148,3 +177,58 @@ async def changePassword(
     await current_user.save()
 
     return {"message": "Password changed successfully"}
+
+
+@router.post("/forgot-password")
+async def forgotPassword(request: ForgotPasswordRequest):
+    """
+    Initiate password reset.
+    Generates a reset token valid for 15 minutes.
+
+    DEV MODE: The token is returned directly in the response.
+    PRODUCTION: Replace the return value with your email-sending logic
+    (e.g. SendGrid / Resend / SMTP) and send the link to the user's inbox.
+    """
+    user = await User.find_one(User.email == request.email)
+
+    # Always respond with 200 — don't reveal if the email is registered
+    if not user:
+        return {"message": "If that email is registered, a reset link has been sent."}
+
+    token = secrets.token_urlsafe(32)
+    user.password_reset_token = token
+    user.password_reset_expires = datetime.utcnow() + timedelta(minutes=15)
+    await user.save()
+
+    reset_link = f"{settings.base_url.rstrip('/')}/auth/reset-password?token={token}"
+
+    # ── DEV ONLY: return the token so you can test without email setup ──
+    # Replace this block with your email-sending code in production.
+    return {
+        "message": "If that email is registered, a reset link has been sent.",
+        "dev_reset_link": reset_link,   # remove in production
+        "dev_token": token,             # remove in production
+    }
+
+
+@router.post("/reset-password")
+async def resetPassword(request: ResetPasswordRequest):
+    """
+    Complete password reset using the token received via email (or dev response).
+    Token is valid for 15 minutes and is single-use.
+    """
+    user = await User.find_one(User.password_reset_token == request.token)
+
+    if not user:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+
+    if not user.password_reset_expires or datetime.utcnow() > user.password_reset_expires:
+        raise HTTPException(status_code=400, detail="Reset token has expired")
+
+    # Update password and clear the reset token (single-use)
+    user.password_hash = hashPassword(request.new_password)
+    user.password_reset_token = None
+    user.password_reset_expires = None
+    await user.save()
+
+    return {"message": "Password has been reset successfully. Please log in with your new password."}

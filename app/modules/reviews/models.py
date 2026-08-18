@@ -17,10 +17,6 @@ class Review(Document):
     class Settings:
         name = "reviews"
 
-
-# --- Request/response schemas ---
-
-
 class CreateReviewRequest(BaseModel):
     rating: int = Field(..., ge=1, le=5)
     comment: str = ""

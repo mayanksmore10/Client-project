@@ -1,14 +1,3 @@
-"""
-Two Gemini text-generation calls used by the pipeline:
-
-  1. parse_query   — pulls structured fields (destination, days, nights,
-                      budget, gst_required) out of the free-text prompt so
-                      they can be used for structured re-ranking.
-  2. generate_recommendation — writes the final grounded, conversational
-                      response using ONLY the retrieved package context
-                      (design doc section 14: no fabrication).
-"""
-
 import json
 import logging
 

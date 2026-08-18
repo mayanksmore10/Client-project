@@ -11,9 +11,9 @@ class GuestDetail(BaseModel):
     """Details for one adult guest."""
     full_name: str
     age: int
-    gender: str  # "male" / "female" / "other"
-    id_proof_type: str  # "aadhar" / "pan" / "passport"
-    id_proof_number: str
+    gender: str   # "male" / "female" / "other"
+    state: str
+    birthdate: date
 
 
 class RoomSelection(BaseModel):
@@ -26,6 +26,8 @@ class PriceBreakdown(BaseModel):
     """Calculated price breakdown for the booking."""
     price_per_person: float = 0
     adult_count: int = 0
+    price_per_child: float = 0
+    child_count: int = 0
     room_charges: float = 0
     subtotal: float = 0
     gst_amount: float = 0
@@ -44,6 +46,7 @@ class Booking(Document):
     travel_date: date
     rooms: list[RoomSelection] = []
     adult_count: int = 1
+    child_count: int = 0
     guests: list[GuestDetail] = []
     price_breakdown: PriceBreakdown = Field(default_factory=PriceBreakdown)
     payment_method: str | None = None  # "upi" / "card" / "net_banking" / "pay_at_counter"
@@ -64,6 +67,7 @@ class InitiateBookingRequest(BaseModel):
     travel_date: date
     rooms: list[RoomSelection]
     adult_count: int = Field(..., ge=1)
+    child_count: int = Field(0, ge=0)  # Children ages 5-11; under 5 free
 
 
 class SaveGuestsRequest(BaseModel):
@@ -84,6 +88,7 @@ class BookingSummaryResponse(BaseModel):
     destination: str
     travel_date: date
     adult_count: int
+    child_count: int
     total: float
     status: str
     created_at: datetime
@@ -99,6 +104,7 @@ class BookingDetailResponse(BaseModel):
     travel_date: date
     rooms: list[RoomSelection]
     adult_count: int
+    child_count: int
     guests: list[GuestDetail]
     price_breakdown: PriceBreakdown
     payment_method: str | None

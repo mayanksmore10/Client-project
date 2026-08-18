@@ -39,9 +39,9 @@ async def searchPackages(
     if destination:
         query["destination"] = {"$regex": destination, "$options": "i"}
     if budget_min is not None:
-        query.setdefault("price_per_person", {})["$gte"] = budget_min
+        query.setdefault("price_per_person", {})["$gte"] = round(budget_min)
     if budget_max is not None:
-        query.setdefault("price_per_person", {})["$lte"] = budget_max
+        query.setdefault("price_per_person", {})["$lte"] = round(budget_max)
     if days is not None:
         query["days"] = days
     if traveler_type:

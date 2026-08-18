@@ -35,6 +35,7 @@ def _toSummary(b: Booking) -> BookingSummaryResponse:
         destination=b.destination,
         travel_date=b.travel_date,
         adult_count=b.adult_count,
+        child_count=b.child_count,
         total=b.price_breakdown.total,
         status=b.status,
         created_at=b.created_at,
@@ -51,6 +52,7 @@ def _toDetail(b: Booking) -> BookingDetailResponse:
         travel_date=b.travel_date,
         rooms=b.rooms,
         adult_count=b.adult_count,
+        child_count=b.child_count,
         guests=b.guests,
         price_breakdown=b.price_breakdown,
         payment_method=b.payment_method,
@@ -78,6 +80,15 @@ async def initiateBooking(
     if request.travel_date not in package.available_dates:
         raise HTTPException(status_code=400, detail="Selected date is not available for this package")
 
+    # Validate children pricing
+    child_count = request.child_count
+    price_per_child = package.price_per_child or 0.0
+    if child_count > 0 and not package.price_per_child:
+        raise HTTPException(
+            status_code=400,
+            detail="This package does not support children pricing"
+        )
+
     # Calculate pricing
     room_map = {r.room_type: r for r in package.room_options}
     room_charges = 0.0
@@ -85,7 +96,9 @@ async def initiateBooking(
         if rs.room_type in room_map:
             room_charges += room_map[rs.room_type].price_per_night * rs.count * package.nights
 
-    person_total = package.price_per_person * request.adult_count
+    adult_total = package.price_per_person * request.adult_count
+    child_total = price_per_child * child_count
+    person_total = adult_total + child_total
     subtotal = person_total + room_charges
     gst_amount = subtotal * 0.05 if not package.gst_included else 0
     total = subtotal + gst_amount
@@ -99,9 +112,12 @@ async def initiateBooking(
         travel_date=request.travel_date,
         rooms=request.rooms,
         adult_count=request.adult_count,
+        child_count=child_count,
         price_breakdown=PriceBreakdown(
             price_per_person=package.price_per_person,
             adult_count=request.adult_count,
+            price_per_child=price_per_child,
+            child_count=child_count,
             room_charges=round(room_charges, 2),
             subtotal=round(subtotal, 2),
             gst_amount=round(gst_amount, 2),
@@ -150,8 +166,8 @@ async def setPaymentMethod(
         raise HTTPException(status_code=404, detail="Booking not found")
     if booking.user_id != str(current_user.id):
         raise HTTPException(status_code=403, detail="Not your booking")
-    if booking.status != "draft":
-        raise HTTPException(status_code=400, detail="Booking is no longer in draft status")
+    if booking.status != "confirmed":
+        raise HTTPException(status_code=400, detail="Payment method can only be set after booking is confirmed")
 
     booking.payment_method = request.payment_method
     await booking.save()
@@ -174,8 +190,6 @@ async def confirmBooking(
     # Validate completeness
     if len(booking.guests) != booking.adult_count:
         raise HTTPException(status_code=400, detail="Guest details are incomplete")
-    if not booking.payment_method:
-        raise HTTPException(status_code=400, detail="Payment method is not set")
 
     booking.status = "confirmed"
     booking.confirmed_at = datetime.utcnow()

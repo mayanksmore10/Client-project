@@ -1,528 +1,839 @@
 [
   {
-    "package_id": "GOA_3D2N_001",
-    "title": "Mumbai to Goa 3D/2N Package",
-    "from": "Mumbai",
-    "destination": "Goa",
-    "days": 3,
-    "nights": 2,
-    "price_per_person": 10000,
-    "gst_included": true,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "Transfers"
-    ],
-    "exclusions": [
-      "Personal expenses"
-    ],
-    "itinerary": [
-      "Day 1: Mumbai to Goa and hotel check-in",
-      "Day 2: Goa sightseeing",
-      "Day 3: Checkout and return"
-    ],
-    "package_url": "/packages/GOA_3D2N_001",
-    "embedding": [],
-    "traveler_type": [
-      "family",
-      "friends",
-      "couples",
-      "foodies",
-      "beach lovers"
-    ]
-  },
-  {
-    "package_id": "GOA_4D3N_002",
-    "title": "Mumbai to Goa Beach Bliss 4D/3N",
-    "from": "Mumbai",
-    "destination": "Goa",
-    "days": 4,
-    "nights": 3,
-    "price_per_person": 14500,
-    "gst_included": true,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "Dinner",
-      "Airport Transfers",
-      "Water Sports"
-    ],
-    "exclusions": [
-      "Personal expenses",
-      "Alcoholic beverages"
-    ],
-    "itinerary": [
-      "Day 1: Arrival in Goa, hotel check-in, leisure evening",
-      "Day 2: North Goa beach and fort tour",
-      "Day 3: South Goa sightseeing and water sports",
-      "Day 4: Checkout and departure"
-    ],
-    "package_url": "/packages/GOA_4D3N_002",
-    "embedding": [],
-    "traveler_type": [
-      "honeymoon",
-      "couples",
-      "friends",
-      "water sports enthusiasts",
-      "photographers"
-    ]
-  },
-  {
-    "package_id": "GOA_2D1N_003",
-    "title": "Budget Goa Getaway 2D/1N",
-    "from": "Mumbai",
-    "destination": "Goa",
-    "days": 2,
-    "nights": 1,
-    "price_per_person": 6500,
+    "package_id": "GOLDEN_TRIANGLE_6D5N_001",
+    "title": "Golden Triangle Classic",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Delhi, Agra, Jaipur",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 18500,
+    "price_per_child": 12000,
     "gst_included": false,
     "inclusions": [
-      "Accommodation",
-      "Breakfast"
+      "Hotel stay",
+      "Breakfast",
+      "AC transport",
+      "Guide",
+      "Monument entry fees"
     ],
-    "exclusions": [
-      "Transfers",
-      "Personal expenses",
-      "GST"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Taj Mahal sunrise visit",
+      "Amber Fort",
+      "Qutub Minar",
+      "Hawa Mahal"
     ],
-    "itinerary": [
-      "Day 1: Arrival, hotel check-in, beach visit",
-      "Day 2: Checkout and return"
-    ],
-    "package_url": "/packages/GOA_2D1N_003",
-    "embedding": [],
+    "description": "A timeless journey through India's most iconic cities, covering the grandeur of Mughal architecture, the majestic Taj Mahal, and the vibrant royal heritage of Rajasthan.",
+    "package_url": "/packages/GOLDEN_TRIANGLE_6D5N_001",
     "traveler_type": [
-      "solo",
-      "friends",
-      "backpackers",
-      "budget travelers",
-      "party goers"
-    ]
+      "family",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-04",
+      "2026-09-13",
+      "2026-10-01"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "GOA_5D4N_008",
-    "title": "Mumbai to Goa Premium 5D/4N",
-    "from": "Mumbai",
-    "destination": "Goa",
+    "package_id": "KERALA_BACKWATERS_5D4N_002",
+    "title": "Kerala Backwaters Bliss",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Kochi, Munnar, Alleppey",
     "days": 5,
     "nights": 4,
     "price_per_person": 21000,
-    "gst_included": true,
+    "price_per_child": 14500,
+    "gst_included": false,
     "inclusions": [
-      "4-star Accommodation",
-      "Breakfast",
-      "Dinner",
-      "Airport Transfers",
-      "Cruise Party",
-      "Water Sports"
+      "Houseboat overnight",
+      "Hotel stay",
+      "Breakfast & dinner",
+      "AC transport"
     ],
-    "exclusions": [
-      "Personal expenses",
-      "Alcoholic beverages",
-      "Optional excursions"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Houseboat stay in Alleppey",
+      "Tea garden tour in Munnar",
+      "Fort Kochi heritage walk"
     ],
-    "itinerary": [
-      "Day 1: Arrival, hotel check-in, welcome dinner",
-      "Day 2: North Goa beaches and forts",
-      "Day 3: South Goa sightseeing and water sports",
-      "Day 4: Sunset cruise party",
-      "Day 5: Checkout and departure"
-    ],
-    "package_url": "/packages/GOA_5D4N_008",
-    "embedding": [],
+    "description": "Cruise through tranquil backwaters on a traditional houseboat, explore lush tea plantations, and soak in the serene beauty of God's Own Country.",
+    "package_url": "/packages/KERALA_BACKWATERS_5D4N_002",
     "traveler_type": [
       "family",
-      "honeymoon",
-      "luxury",
-      "wellness",
-      "senior"
-    ]
+      "friends"
+    ],
+    "available_dates": [
+      "2026-09-07",
+      "2026-09-14",
+      "2026-09-21",
+      "2026-09-29",
+      "2026-10-09"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "MANALI_5D4N_004",
-    "title": "Delhi to Manali Snow Adventure 5D/4N",
-    "from": "Delhi",
-    "destination": "Manali",
-    "days": 5,
-    "nights": 4,
-    "price_per_person": 18500,
-    "gst_included": true,
+    "package_id": "GOA_BEACH_4D3N_003",
+    "title": "Goa Beach Escape",
+    "from": "Multiple / Not specified in source data",
+    "destination": "North Goa, South Goa",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 13500,
+    "price_per_child": 9000,
+    "gst_included": false,
     "inclusions": [
-      "Accommodation",
+      "Beach resort stay",
       "Breakfast",
-      "Dinner",
-      "Volvo Bus Transfers",
+      "Airport transfers",
       "Sightseeing"
     ],
-    "exclusions": [
-      "Personal expenses",
-      "Adventure activity charges"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Baga Beach",
+      "Basilica of Bom Jesus",
+      "Sunset cruise",
+      "Water sports"
     ],
-    "itinerary": [
-      "Day 1: Delhi to Manali overnight journey",
-      "Day 2: Arrival and local sightseeing",
-      "Day 3: Solang Valley excursion",
-      "Day 4: Manali local sightseeing",
-      "Day 5: Departure to Delhi"
-    ],
-    "package_url": "/packages/MANALI_5D4N_004",
-    "embedding": [],
+    "description": "Sun, sand, and sea come together in this relaxed getaway featuring pristine beaches, vibrant nightlife, and Portuguese-era architecture.",
+    "package_url": "/packages/GOA_BEACH_4D3N_003",
     "traveler_type": [
       "family",
-      "friends",
-      "adventure",
-      "nature lovers",
-      "snow seekers"
-    ]
+      "friends"
+    ],
+    "available_dates": [
+      "2026-09-11",
+      "2026-09-29",
+      "2026-10-14"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "MANALI_3D2N_007",
-    "title": "Quick Manali Escape 3D/2N",
-    "from": "Chandigarh",
-    "destination": "Manali",
+    "package_id": "ROYAL_RAJASTHAN_8D7N_004",
+    "title": "Royal Rajasthan Heritage",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Jaipur, Jodhpur, Udaipur, Jaisalmer",
+    "days": 8,
+    "nights": 7,
+    "price_per_person": 32000,
+    "price_per_child": 21000,
+    "gst_included": false,
+    "inclusions": [
+      "Heritage hotel stay",
+      "Breakfast",
+      "AC transport",
+      "Guide",
+      "Camel safari"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Mehrangarh Fort",
+      "Lake Pichola boat ride",
+      "Desert camel safari",
+      "City Palace"
+    ],
+    "description": "Explore majestic forts, opulent palaces, and desert landscapes on this grand tour through the land of kings.",
+    "package_url": "/packages/ROYAL_RAJASTHAN_8D7N_004",
+    "traveler_type": [
+      "friends"
+    ],
+    "available_dates": [
+      "2026-09-01",
+      "2026-09-20",
+      "2026-10-09",
+      "2026-10-18"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "HIMALAYAN_MANALISHIMLA_6D5N_005",
+    "title": "Himalayan Manali-Shimla Retreat",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Shimla, Manali",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 19500,
+    "price_per_child": 13000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast & dinner",
+      "AC transport",
+      "Sightseeing"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Solang Valley",
+      "Mall Road Shimla",
+      "Rohtang Pass (seasonal)",
+      "Kufri"
+    ],
+    "description": "Escape to the cool hills of Himachal Pradesh with scenic mountain views, snow-capped peaks, and charming colonial towns.",
+    "package_url": "/packages/HIMALAYAN_MANALISHIMLA_6D5N_005",
+    "traveler_type": [
+      "honeymoon",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-06",
+      "2026-09-14",
+      "2026-09-22"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "LADAKH_ADVENTURE_7D6N_006",
+    "title": "Ladakh Adventure Expedition",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Leh, Nubra Valley, Pangong Lake",
+    "days": 7,
+    "nights": 6,
+    "price_per_person": 28500,
+    "price_per_child": 19000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel/camp stay",
+      "All meals",
+      "Innova transport",
+      "Oxygen support",
+      "Permits"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Pangong Lake",
+      "Khardung La Pass",
+      "Nubra Valley sand dunes",
+      "Monastery visits"
+    ],
+    "description": "A thrilling high-altitude adventure through dramatic landscapes, Buddhist monasteries, and the stunning blue waters of Pangong Lake.",
+    "package_url": "/packages/LADAKH_ADVENTURE_7D6N_006",
+    "traveler_type": [
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-05",
+      "2026-09-24",
+      "2026-10-01",
+      "2026-10-19",
+      "2026-11-02"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "VARANASI_SPIRITUAL_3D2N_007",
+    "title": "Varanasi Spiritual Journey",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Varanasi, Sarnath",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 9500,
+    "price_per_child": 6500,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "Boat ride",
+      "Local transport"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Ganga Aarti at Dashashwamedh Ghat",
+      "Boat ride at sunrise",
+      "Sarnath Buddhist site"
+    ],
+    "description": "Immerse yourself in the spiritual heart of India with sacred Ganga Aarti ceremonies, ancient temples, and timeless riverside rituals.",
+    "package_url": "/packages/VARANASI_SPIRITUAL_3D2N_007",
+    "traveler_type": [
+      "senior"
+    ],
+    "available_dates": [
+      "2026-09-09",
+      "2026-09-20",
+      "2026-10-10"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "ANDAMAN_ISLANDS_6D5N_008",
+    "title": "Andaman Islands Paradise",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Port Blair, Havelock Island, Neil Island",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 26500,
+    "price_per_child": 18000,
+    "gst_included": false,
+    "inclusions": [
+      "Resort stay",
+      "Breakfast",
+      "Ferry transfers",
+      "Sightseeing"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Radhanagar Beach",
+      "Scuba diving",
+      "Cellular Jail light show",
+      "Snorkeling"
+    ],
+    "description": "Discover turquoise waters, coral reefs, and pristine beaches on this tropical island adventure perfect for relaxation and water sports.",
+    "package_url": "/packages/ANDAMAN_ISLANDS_6D5N_008",
+    "traveler_type": [
+      "friends",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-02",
+      "2026-09-09",
+      "2026-09-26"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "DARJEELINGGANGTOK_HILL_6D5N_009",
+    "title": "Darjeeling-Gangtok Hill Tour",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Darjeeling, Gangtok",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 20500,
+    "price_per_child": 14000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "AC transport",
+      "Permits for Sikkim"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Tiger Hill sunrise",
+      "Toy Train ride",
+      "Tsomgo Lake",
+      "Tea garden visit"
+    ],
+    "description": "Wander through misty tea gardens, catch views of Kanchenjunga, and experience the charm of Sikkim's capital.",
+    "package_url": "/packages/DARJEELINGGANGTOK_HILL_6D5N_009",
+    "traveler_type": [
+      "family",
+      "group",
+      "honeymoon"
+    ],
+    "available_dates": [
+      "2026-09-05",
+      "2026-09-19",
+      "2026-10-06",
+      "2026-10-26"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "MUMBAILONAVALA_GETAWAY_4D3N_010",
+    "title": "Mumbai-Lonavala Getaway",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Mumbai, Lonavala, Khandala",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 14500,
+    "price_per_child": 9500,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "AC transport",
+      "City tour"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Gateway of India",
+      "Marine Drive",
+      "Bhushi Dam",
+      "Tiger's Point"
+    ],
+    "description": "Blend the energy of India's financial capital with the misty hill charm of Lonavala's waterfalls and viewpoints.",
+    "package_url": "/packages/MUMBAILONAVALA_GETAWAY_4D3N_010",
+    "traveler_type": [
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-11",
+      "2026-09-22",
+      "2026-10-10"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "RISHIKESHHARIDWAR_YOGA_4D3N_011",
+    "title": "Rishikesh-Haridwar Yoga & Adventure",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Rishikesh, Haridwar",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 11500,
+    "price_per_child": 8000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel/ashram stay",
+      "Breakfast",
+      "Rafting session",
+      "Local transport"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "River rafting",
+      "Ganga Aarti at Har Ki Pauri",
+      "Yoga sessions",
+      "Laxman Jhula"
+    ],
+    "description": "Combine spiritual rejuvenation with adrenaline-pumping adventure in the yoga capital of the world, set on the banks of the Ganges.",
+    "package_url": "/packages/RISHIKESHHARIDWAR_YOGA_4D3N_011",
+    "traveler_type": [
+      "family",
+      "friends"
+    ],
+    "available_dates": [
+      "2026-09-03",
+      "2026-09-18",
+      "2026-10-06",
+      "2026-10-16",
+      "2026-10-25"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "KASHMIR_PARADISE_6D5N_012",
+    "title": "Kashmir Paradise Tour",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Srinagar, Gulmarg, Pahalgam",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 24500,
+    "price_per_child": 16500,
+    "gst_included": false,
+    "inclusions": [
+      "Houseboat & hotel stay",
+      "Breakfast & dinner",
+      "AC transport",
+      "Sightseeing"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Shikara ride on Dal Lake",
+      "Gondola ride in Gulmarg",
+      "Betaab Valley",
+      "Mughal Gardens"
+    ],
+    "description": "Experience heaven on earth with houseboat stays on Dal Lake, snow-capped mountains, and lush green valleys.",
+    "package_url": "/packages/KASHMIR_PARADISE_6D5N_012",
+    "traveler_type": [
+      "friends",
+      "group"
+    ],
+    "available_dates": [
+      "2026-09-11",
+      "2026-09-23",
+      "2026-10-13"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "AMRITSAR_GOLDEN_3D2N_013",
+    "title": "Amritsar Golden Temple Tour",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Amritsar, Wagah Border",
     "days": 3,
     "nights": 2,
     "price_per_person": 8500,
+    "price_per_child": 6000,
     "gst_included": false,
     "inclusions": [
-      "Accommodation",
-      "Breakfast"
-    ],
-    "exclusions": [
-      "Transfers",
-      "GST",
-      "Personal expenses"
-    ],
-    "itinerary": [
-      "Day 1: Arrival and local market visit",
-      "Day 2: Solang Valley and Vashisht temple",
-      "Day 3: Checkout and departure"
-    ],
-    "package_url": "/packages/MANALI_3D2N_007",
-    "embedding": [],
-    "traveler_type": [
-      "friends",
-      "solo",
-      "photographers",
-      "short getaway seekers"
-    ]
-  },
-  {
-    "package_id": "MANALI_6D5N_009",
-    "title": "Manali-Kasol Backpacker Trail 6D/5N",
-    "from": "Delhi",
-    "destination": "Manali",
-    "days": 6,
-    "nights": 5,
-    "price_per_person": 16000,
-    "gst_included": true,
-    "inclusions": [
-      "Hostel Accommodation",
+      "Hotel stay",
       "Breakfast",
-      "Shared Cab",
-      "Trekking Guide"
+      "Local transport",
+      "Guide"
     ],
-    "exclusions": [
-      "Meals other than breakfast",
-      "Personal expenses"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Golden Temple",
+      "Wagah Border retreat ceremony",
+      "Jallianwala Bagh"
     ],
-    "itinerary": [
-      "Day 1: Delhi to Manali overnight journey",
-      "Day 2: Old Manali exploration",
-      "Day 3: Manali to Kasol",
-      "Day 4: Kasol-Tosh trek",
-      "Day 5: Kasol to Manali",
-      "Day 6: Departure to Delhi"
-    ],
-    "package_url": "/packages/MANALI_6D5N_009",
-    "embedding": [],
-    "traveler_type": [
-      "solo",
-      "backpackers",
-      "adventure",
-      "thrill seekers",
-      "trekkers"
-    ]
-  },
-  {
-    "package_id": "JAIPUR_3D2N_005",
-    "title": "Delhi to Jaipur Heritage Tour 3D/2N",
-    "from": "Delhi",
-    "destination": "Jaipur",
-    "days": 3,
-    "nights": 2,
-    "price_per_person": 9000,
-    "gst_included": true,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "AC Cab",
-      "Guided Sightseeing"
-    ],
-    "exclusions": [
-      "Entry tickets",
-      "Personal expenses"
-    ],
-    "itinerary": [
-      "Day 1: Delhi to Jaipur, Amber Fort visit",
-      "Day 2: City Palace, Hawa Mahal, local markets",
-      "Day 3: Checkout and return to Delhi"
-    ],
-    "package_url": "/packages/JAIPUR_3D2N_005",
-    "embedding": [],
-    "traveler_type": [
-      "family",
-      "senior",
-      "couples",
-      "history buffs",
-      "culture enthusiasts"
-    ]
-  },
-  {
-    "package_id": "JAIPUR_2D1N_010",
-    "title": "Jaipur Weekend Dash 2D/1N",
-    "from": "Delhi",
-    "destination": "Jaipur",
-    "days": 2,
-    "nights": 1,
-    "price_per_person": 5500,
-    "gst_included": false,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "Shared Cab"
-    ],
-    "exclusions": [
-      "Entry tickets",
-      "Personal expenses",
-      "GST"
-    ],
-    "itinerary": [
-      "Day 1: Delhi to Jaipur, Hawa Mahal and local market visit",
-      "Day 2: Amber Fort and return to Delhi"
-    ],
-    "package_url": "/packages/JAIPUR_2D1N_010",
-    "embedding": [],
-    "traveler_type": [
-      "friends",
-      "couples",
-      "solo",
-      "foodies",
-      "shoppers"
-    ]
-  },
-  {
-    "package_id": "KERALA_6D5N_006",
-    "title": "Kochi to Munnar-Alleppey Backwaters 6D/5N",
-    "from": "Kochi",
-    "destination": "Kerala",
-    "days": 6,
-    "nights": 5,
-    "price_per_person": 22000,
-    "gst_included": true,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "Dinner",
-      "Houseboat Stay",
-      "Private Cab"
-    ],
-    "exclusions": [
-      "Lunch",
-      "Personal expenses",
-      "Entry fees"
-    ],
-    "itinerary": [
-      "Day 1: Arrival in Kochi, local sightseeing",
-      "Day 2: Kochi to Munnar, tea garden visit",
-      "Day 3: Munnar sightseeing",
-      "Day 4: Munnar to Alleppey, houseboat check-in",
-      "Day 5: Alleppey backwaters cruise",
-      "Day 6: Checkout and departure"
-    ],
-    "package_url": "/packages/KERALA_6D5N_006",
-    "embedding": [],
+    "description": "Pay homage at the shimmering Golden Temple and witness the patriotic fervor of the Wagah Border ceremony.",
+    "package_url": "/packages/AMRITSAR_GOLDEN_3D2N_013",
     "traveler_type": [
       "family",
       "honeymoon",
-      "senior",
-      "nature lovers",
-      "wellness"
-    ]
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-05",
+      "2026-09-13",
+      "2026-09-23",
+      "2026-10-14"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "KERALA_4D3N_011",
-    "title": "Kerala Highlights Express 4D/3N",
-    "from": "Kochi",
-    "destination": "Kerala",
+    "package_id": "OOTYCOONOOR_NILGIRI_5D4N_014",
+    "title": "Ooty-Coonoor Nilgiri Tour",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Ooty, Coonoor",
+    "days": 5,
+    "nights": 4,
+    "price_per_person": 16500,
+    "price_per_child": 11000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "AC transport",
+      "Toy train tickets"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Nilgiri Toy Train",
+      "Botanical Gardens",
+      "Doddabetta Peak",
+      "Tea Museum"
+    ],
+    "description": "Journey through the rolling hills of the Nilgiris on the famous toy train, past tea estates and botanical gardens.",
+    "package_url": "/packages/OOTYCOONOOR_NILGIRI_5D4N_014",
+    "traveler_type": [
+      "honeymoon",
+      "senior",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-11",
+      "2026-09-25",
+      "2026-10-04",
+      "2026-10-15"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "HAMPI_HERITAGE_3D2N_015",
+    "title": "Hampi Heritage Discovery",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Hampi, Hospet",
+    "days": 3,
+    "nights": 2,
+    "price_per_person": 10500,
+    "price_per_child": 7000,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "Local transport",
+      "Guide"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Virupaksha Temple",
+      "Vittala Temple stone chariot",
+      "Hampi Bazaar",
+      "Sunset at Matanga Hill"
+    ],
+    "description": "Step back in time among the ruins of the Vijayanagara Empire, a UNESCO World Heritage Site with stunning boulder landscapes.",
+    "package_url": "/packages/HAMPI_HERITAGE_3D2N_015",
+    "traveler_type": [
+      "friends"
+    ],
+    "available_dates": [
+      "2026-09-05",
+      "2026-09-23",
+      "2026-10-09",
+      "2026-10-22",
+      "2026-11-12"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "COORG_COFFEE_4D3N_016",
+    "title": "Coorg Coffee Trails",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Madikeri, Coorg",
     "days": 4,
     "nights": 3,
     "price_per_person": 15000,
-    "gst_included": true,
+    "price_per_child": 10000,
+    "gst_included": false,
     "inclusions": [
-      "Accommodation",
+      "Homestay/resort stay",
       "Breakfast",
-      "Private Cab",
-      "Houseboat Lunch Cruise"
+      "AC transport",
+      "Plantation tour"
     ],
-    "exclusions": [
-      "Dinner",
-      "Personal expenses"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Abbey Falls",
+      "Coffee plantation tour",
+      "Raja's Seat",
+      "Dubare Elephant Camp"
     ],
-    "itinerary": [
-      "Day 1: Arrival in Kochi, Fort Kochi walking tour",
-      "Day 2: Kochi to Alleppey, day houseboat cruise",
-      "Day 3: Alleppey to Kumarakom, backwater village visit",
-      "Day 4: Checkout and departure"
-    ],
-    "package_url": "/packages/KERALA_4D3N_011",
-    "embedding": [],
+    "description": "Wander through fragrant coffee plantations and spice gardens in the 'Scotland of India', nestled in the Western Ghats.",
+    "package_url": "/packages/COORG_COFFEE_4D3N_016",
     "traveler_type": [
-      "couples",
+      "group",
+      "honeymoon"
+    ],
+    "available_dates": [
+      "2026-09-08",
+      "2026-09-16",
+      "2026-10-05",
+      "2026-10-12",
+      "2026-11-01"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "RANN_OF_4D3N_017",
+    "title": "Rann of Kutch Desert Festival",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Bhuj, White Rann",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 17500,
+    "price_per_child": 12000,
+    "gst_included": false,
+    "inclusions": [
+      "Tent city / hotel stay",
+      "All meals",
+      "Cultural program",
+      "AC transport"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "White Rann tent city",
+      "Kala Dungar sunset",
+      "Handicraft villages",
+      "Cultural performances"
+    ],
+    "description": "Witness the surreal white salt desert glowing under moonlight, complete with folk dance, music, and vibrant local culture.",
+    "package_url": "/packages/RANN_OF_4D3N_017",
+    "traveler_type": [
+      "honeymoon"
+    ],
+    "available_dates": [
+      "2026-09-07",
+      "2026-09-23",
+      "2026-10-01",
+      "2026-10-14",
+      "2026-10-27"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "MYSORECOORG_ROYAL_5D4N_018",
+    "title": "Mysore-Coorg Royal Trail",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Mysore, Coorg",
+    "days": 5,
+    "nights": 4,
+    "price_per_person": 18000,
+    "price_per_child": 12500,
+    "gst_included": false,
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "AC transport",
+      "Sightseeing"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Mysore Palace light show",
+      "Chamundi Hills",
+      "Coorg coffee plantations",
+      "Brindavan Gardens"
+    ],
+    "description": "Discover royal palaces and misty hills in this combination tour through Karnataka's cultural and natural highlights.",
+    "package_url": "/packages/MYSORECOORG_ROYAL_5D4N_018",
+    "traveler_type": [
       "family",
       "friends",
-      "photographers",
-      "peace seekers"
-    ]
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-02",
+      "2026-09-19",
+      "2026-10-10",
+      "2026-10-25",
+      "2026-11-13"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "RISHIKESH_3D2N_012",
-    "title": "Delhi to Rishikesh Adventure 3D/2N",
-    "from": "Delhi",
-    "destination": "Rishikesh",
-    "days": 3,
-    "nights": 2,
-    "price_per_person": 7500,
-    "gst_included": true,
+    "package_id": "SUNDARBANS_WILDLIFE_4D3N_019",
+    "title": "Sundarbans Wildlife Safari",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Kolkata, Sundarbans",
+    "days": 4,
+    "nights": 3,
+    "price_per_person": 16000,
+    "price_per_child": 11000,
+    "gst_included": false,
     "inclusions": [
-      "Camp Accommodation",
-      "All Meals",
-      "River Rafting",
-      "Bonfire"
+      "Resort/boat stay",
+      "All meals",
+      "Safari permits",
+      "Boat transport"
     ],
-    "exclusions": [
-      "Personal expenses",
-      "Optional activities"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Mangrove boat safari",
+      "Sajnekhali Wildlife Sanctuary",
+      "Watchtower birdwatching"
     ],
-    "itinerary": [
-      "Day 1: Delhi to Rishikesh, camp check-in, bonfire evening",
-      "Day 2: River rafting and local temple visits",
-      "Day 3: Checkout and return to Delhi"
-    ],
-    "package_url": "/packages/RISHIKESH_3D2N_012",
-    "embedding": [],
+    "description": "Cruise through mangrove forests in search of the elusive Royal Bengal Tiger in the world's largest mangrove delta.",
+    "package_url": "/packages/SUNDARBANS_WILDLIFE_4D3N_019",
     "traveler_type": [
-      "adventure",
-      "friends",
-      "solo",
-      "thrill seekers",
-      "spiritual"
-    ]
-  },
-  {
-    "package_id": "UDAIPUR_3D2N_013",
-    "title": "Udaipur City of Lakes 3D/2N",
-    "from": "Ahmedabad",
-    "destination": "Udaipur",
-    "days": 3,
-    "nights": 2,
-    "price_per_person": 11500,
-    "gst_included": true,
-    "inclusions": [
-      "Accommodation",
-      "Breakfast",
-      "Boat Ride",
-      "Guided City Tour"
-    ],
-    "exclusions": [
-      "Entry tickets",
-      "Personal expenses"
-    ],
-    "itinerary": [
-      "Day 1: Arrival, City Palace visit",
-      "Day 2: Lake Pichola boat ride and Saheliyon ki Bari",
-      "Day 3: Checkout and departure"
-    ],
-    "package_url": "/packages/UDAIPUR_3D2N_013",
-    "embedding": [],
-    "traveler_type": [
-      "honeymoon",
-      "couples",
       "family",
-      "history buffs",
-      "luxury"
-    ]
+      "group",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-03",
+      "2026-09-17",
+      "2026-09-24",
+      "2026-10-12"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "SHIMLA_4D3N_014",
-    "title": "Delhi to Shimla Hill Retreat 4D/3N",
-    "from": "Delhi",
-    "destination": "Shimla",
+    "package_id": "SPITI_VALLEY_8D7N_020",
+    "title": "Spiti Valley Offbeat Expedition",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Kaza, Spiti Valley, Chandratal",
+    "days": 8,
+    "nights": 7,
+    "price_per_person": 27500,
+    "price_per_child": 19500,
+    "gst_included": false,
+    "inclusions": [
+      "Guesthouse/camp stay",
+      "All meals",
+      "SUV transport",
+      "Permits",
+      "Oxygen support"
+    ],
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Key Monastery",
+      "Chandratal Lake",
+      "Chicham Bridge",
+      "Kibber Village"
+    ],
+    "description": "A rugged, offbeat journey through the cold desert mountains of Spiti, featuring ancient monasteries and star-studded night skies.",
+    "package_url": "/packages/SPITI_VALLEY_8D7N_020",
+    "traveler_type": [
+      "friends",
+      "honeymoon"
+    ],
+    "available_dates": [
+      "2026-09-02",
+      "2026-09-22",
+      "2026-10-09",
+      "2026-10-20",
+      "2026-11-09"
+    ],
+    "embedding": []
+  },
+  {
+    "package_id": "KONARKPURIBHUBANESWAR_TEMPLE_4D3N_021",
+    "title": "Konark-Puri-Bhubaneswar Temple Trail",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Bhubaneswar, Puri, Konark",
     "days": 4,
     "nights": 3,
     "price_per_person": 13000,
+    "price_per_child": 9000,
     "gst_included": false,
     "inclusions": [
-      "Accommodation",
+      "Hotel stay",
       "Breakfast",
-      "Sightseeing Cab"
+      "AC transport",
+      "Guide"
     ],
-    "exclusions": [
-      "GST",
-      "Personal expenses",
-      "Toy train tickets"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Konark Sun Temple",
+      "Jagannath Temple Puri",
+      "Lingaraj Temple",
+      "Puri Beach"
     ],
-    "itinerary": [
-      "Day 1: Delhi to Shimla",
-      "Day 2: Mall Road and Ridge sightseeing",
-      "Day 3: Kufri excursion",
-      "Day 4: Checkout and return to Delhi"
-    ],
-    "package_url": "/packages/SHIMLA_4D3N_014",
-    "embedding": [],
+    "description": "Explore Odisha's golden triangle of temples, from the ancient Sun Temple to the sacred Jagannath shrine and pristine beaches.",
+    "package_url": "/packages/KONARKPURIBHUBANESWAR_TEMPLE_4D3N_021",
     "traveler_type": [
-      "family",
-      "couples",
-      "senior",
-      "nature lovers",
-      "photographers"
-    ]
+      "group",
+      "honeymoon"
+    ],
+    "available_dates": [
+      "2026-09-03",
+      "2026-09-18",
+      "2026-10-07",
+      "2026-10-28"
+    ],
+    "embedding": []
   },
   {
-    "package_id": "ANDAMAN_5D4N_015",
-    "title": "Port Blair to Havelock Island Escape 5D/4N",
-    "from": "Chennai",
-    "destination": "Andaman",
-    "days": 5,
-    "nights": 4,
-    "price_per_person": 28000,
-    "gst_included": true,
+    "package_id": "NORTHEAST_EXPLORER_6D5N_022",
+    "title": "Northeast Explorer: Assam-Meghalaya",
+    "from": "Multiple / Not specified in source data",
+    "destination": "Guwahati, Shillong, Cherrapunji",
+    "days": 6,
+    "nights": 5,
+    "price_per_person": 23500,
+    "price_per_child": 16000,
+    "gst_included": false,
     "inclusions": [
-      "Accommodation",
+      "Hotel stay",
       "Breakfast",
-      "Ferry Transfers",
-      "Scuba Diving Session"
+      "AC transport",
+      "Safari fees",
+      "Guide"
     ],
-    "exclusions": [
-      "Lunch",
-      "Dinner",
-      "Personal expenses"
+    "exclusions": [],
+    "itinerary": [],
+    "highlights": [
+      "Living Root Bridges",
+      "Kaziranga safari",
+      "Nohkalikai Falls",
+      "Umiam Lake"
     ],
-    "itinerary": [
-      "Day 1: Arrival in Port Blair, Cellular Jail visit",
-      "Day 2: Ferry to Havelock Island",
-      "Day 3: Radhanagar Beach and scuba diving",
-      "Day 4: Havelock leisure day",
-      "Day 5: Return to Port Blair and departure"
-    ],
-    "package_url": "/packages/ANDAMAN_5D4N_015",
-    "embedding": [],
+    "description": "Venture into India's lush northeast with living root bridges, cascading waterfalls, and Kaziranga's rhino safaris.",
+    "package_url": "/packages/NORTHEAST_EXPLORER_6D5N_022",
     "traveler_type": [
-      "honeymoon",
-      "family",
-      "adventure",
-      "scuba divers",
-      "beach lovers"
-    ]
+      "friends",
+      "senior",
+      "solo"
+    ],
+    "available_dates": [
+      "2026-09-02",
+      "2026-09-23",
+      "2026-10-05"
+    ],
+    "embedding": []
   }
 ]

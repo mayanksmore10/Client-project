@@ -12,6 +12,7 @@ from app.modules.contact import router as contact
 from app.modules.home import router as home
 from app.modules.packages import router as packages
 from app.modules.recommendations import router as recommendations
+from app.modules.reviews import router as reviews
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -41,6 +42,7 @@ app.include_router(packages.router)
 app.include_router(bookings.router)
 app.include_router(contact.router)
 app.include_router(recommendations.router)
+app.include_router(reviews.router)
 
 # --- Static file serving for uploads (profile photos, etc.) ---
 uploads_dir = os.path.join(os.getcwd(), "uploads")

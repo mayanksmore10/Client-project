@@ -32,3 +32,22 @@ def createAccessToken(user_id: str, role: str = "user") -> str:
 
 def decodeAccessToken(token: str) -> dict:
     return jwt.decode(token, settings.jwt_secret_key, algorithms=[settings.jwt_algorithm])
+
+
+# --- Admin JWT (separate secret — user tokens are invalid here) ---
+
+def createAdminToken() -> str:
+    """Create a short-lived token for the single admin account."""
+    now = datetime.now(timezone.utc)
+    payload = {
+        "sub": "admin",
+        "role": "admin",
+        "iat": now,
+        "exp": now + timedelta(minutes=settings.admin_jwt_expire_minutes),
+    }
+    return jwt.encode(payload, settings.admin_jwt_secret_key, algorithm=settings.jwt_algorithm)
+
+
+def decodeAdminToken(token: str) -> dict:
+    """Decode and verify an admin token using the separate admin secret."""
+    return jwt.decode(token, settings.admin_jwt_secret_key, algorithms=[settings.jwt_algorithm])

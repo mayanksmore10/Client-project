@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
@@ -14,6 +14,10 @@ class User(Document):
     profile_photo_url: str | None = None
     role: str = "user"  # room for "admin" later, per the design doc's scope note
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    # --- Password reset ---
+    password_reset_token: str | None = None
+    password_reset_expires: datetime | None = None
 
     class Settings:
         name = "users"
@@ -58,4 +62,13 @@ class UpdateProfileRequest(BaseModel):
 
 class ChangePasswordRequest(BaseModel):
     current_password: str
+    new_password: str = Field(..., min_length=8)
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
     new_password: str = Field(..., min_length=8)

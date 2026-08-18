@@ -2,7 +2,7 @@
 from datetime import date
 from typing import Optional
 from beanie import Document
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class RoomOption(BaseModel):
@@ -16,17 +16,18 @@ class RoomOption(BaseModel):
 
 class TourPackage(Document):
     package_id: str = Field(..., description="Unique human-readable package ID")
-    title: str
-    from_: str = Field(..., alias="from")
-    destination: str
-    days: int
-    nights: int
-    price_per_person: float
-    gst_included: bool
+    title: str = ""
+    from_: str = Field(default="", alias="from")
+    destination: str = ""
+    days: int = 0
+    nights: int = 0
+    price_per_person: float = 0
+    price_per_child: Optional[float] = None   # None = children not allowed / not specified
+    gst_included: bool = False
     inclusions: list[str] = []
     exclusions: list[str] = []
     itinerary: list[str] = []
-    package_url: str
+    package_url: str = ""
     embedding: Optional[list[float]] = None
 
     # --- New fields ---
@@ -35,6 +36,49 @@ class TourPackage(Document):
     available_dates: list[date] = []     # Dates when the tour runs
     room_options: list[RoomOption] = []   # Room types with pricing
     highlights: list[str] = []           # Short highlights for card view
+    description: str = ""                # Short marketing description
+
+    # ── Tolerate null values in older MongoDB documents ──────────────────────
+    # When fields were added to the model after data was already inserted,
+    # MongoDB may store them as null. These validators convert null → default.
+
+    @field_validator("from_", "destination", "title", "package_url", "description", mode="before")
+    @classmethod
+    def str_none_to_empty(cls, v):
+        return v if v is not None else ""
+
+    @field_validator("gst_included", mode="before")
+    @classmethod
+    def bool_none_to_false(cls, v):
+        return v if v is not None else False
+
+    @field_validator("days", "nights", mode="before")
+    @classmethod
+    def int_none_to_zero(cls, v):
+        return v if v is not None else 0
+
+    @field_validator("price_per_person", mode="before")
+    @classmethod
+    def float_none_to_zero(cls, v):
+        return v if v is not None else 0.0
+
+    @field_validator(
+        "inclusions", "exclusions", "itinerary",
+        "traveler_type", "images", "highlights", mode="before"
+    )
+    @classmethod
+    def strlist_none_to_empty(cls, v):
+        return v if v is not None else []
+
+    @field_validator("available_dates", mode="before")
+    @classmethod
+    def datelist_none_to_empty(cls, v):
+        return v if v is not None else []
+
+    @field_validator("room_options", mode="before")
+    @classmethod
+    def roomlist_none_to_empty(cls, v):
+        return v if v is not None else []
 
     class Settings:
         name = "packages"

@@ -1,4 +1,5 @@
 import logging
+import certifi
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -18,7 +19,11 @@ client = None
 
 async def connect_to_mongo():
     global client
-    client = AsyncIOMotorClient(settings.mongodb_uri)
+    client = AsyncIOMotorClient(
+        settings.mongodb_uri,
+        tlsCAFile=certifi.where(),
+        tlsAllowInvalidCertificates=True,
+    )
     db = client[settings.mongodb_db_name]
     
     await init_beanie(

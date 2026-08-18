@@ -9,3 +9,4 @@ python-dotenv>=1.0.1
 pyjwt>=2.9.0
 passlib[argon2]>=1.7.4
 python-multipart>=0.0.9
+aiosmtplib>=3.0.0
