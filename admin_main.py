@@ -49,3 +49,17 @@ async def root():
 @admin_app.get("/health")
 async def healthCheck():
     return {"status": "ok", "service": f"{settings.app_name} Admin"}
+
+
+@admin_app.get("/_debug_hash")
+async def debugHash():
+    import os
+    from app.core.security import verifyPassword
+    h = settings.admin_password_hash
+    ok = verifyPassword("Admin123", h) if h else False
+    return {
+        "full_hash": h,
+        "env_var": os.environ.get("ADMIN_PASSWORD_HASH"),
+        "cwd": os.getcwd(),
+        "verify_result": ok,
+    }

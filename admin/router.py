@@ -22,7 +22,6 @@ router = APIRouter(prefix="/admin", tags=["admin"])
 
 
 class AdminLoginRequest(BaseModel):
-    email: EmailStr
     password: str
 
 
@@ -30,18 +29,14 @@ class AdminLoginRequest(BaseModel):
 async def adminLogin(request: AdminLoginRequest, response: Response):
     """
     Single admin account login.
-    Credentials are stored in .env — not in the database.
-    Returns a token signed with the admin JWT secret (separate from user tokens).
+    Only password is required — credentials stored in .env.
+    Returns a token signed with the admin JWT secret.
     """
     if not settings.admin_jwt_secret_key:
         raise HTTPException(
             status_code=500,
             detail="Admin JWT secret is not configured. Set ADMIN_JWT_SECRET_KEY in .env",
         )
-
-    # Check email — same error message for both wrong email and wrong password (no info leak)
-    if request.email.lower() != settings.admin_email.lower():
-        raise HTTPException(status_code=401, detail="Invalid admin credentials")
 
     if not settings.admin_password_hash or not verifyPassword(request.password, settings.admin_password_hash):
         raise HTTPException(status_code=401, detail="Invalid admin credentials")

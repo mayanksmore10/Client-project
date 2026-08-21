@@ -1,21 +1,25 @@
 from datetime import datetime, timedelta, timezone
 import jwt
-from passlib.context import CryptContext
 from app.core.config import settings
+from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError, VerificationError, InvalidHashError
 
 # --- Password hashing ---
 
-_pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+_ph = PasswordHasher()
 
 
 def hashPassword(plain_password: str) -> str:
     """Hash a plain-text password for storage. Never store the plain password."""
-    return _pwd_context.hash(plain_password)
+    return _ph.hash(plain_password)
 
 
 def verifyPassword(plain_password: str, hashed_password: str) -> bool:
     """Verify a submitted password against the stored hash at login time."""
-    return _pwd_context.verify(plain_password, hashed_password)
+    try:
+        return _ph.verify(hashed_password, plain_password)
+    except (VerifyMismatchError, VerificationError, InvalidHashError):
+        return False
 
 
 # --- JWT ---
