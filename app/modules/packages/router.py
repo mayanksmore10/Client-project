@@ -64,7 +64,7 @@ async def searchPackages(
 async def getByDestination(destination: str, limit: int = 20):
     """Browse all packages for a specific destination."""
     packages = await TourPackage.find(
-        {"destination": {"$regex": f"^{destination}$", "$options": "i"}}
+        {"destination": {"$regex": destination, "$options": "i"}}
     ).limit(limit).to_list()
     return [p.model_dump(exclude={"embedding"}) for p in packages]
 
