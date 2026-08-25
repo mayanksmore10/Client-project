@@ -35,7 +35,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Routers ---
 app.include_router(auth.router)
 app.include_router(home.router)
 app.include_router(packages.router)
@@ -44,7 +43,6 @@ app.include_router(contact.router)
 app.include_router(recommendations.router)
 app.include_router(reviews.router)
 
-# --- Static file serving for uploads (profile photos, etc.) ---
 uploads_dir = os.path.join(os.getcwd(), "uploads")
 os.makedirs(uploads_dir, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=uploads_dir), name="uploads")

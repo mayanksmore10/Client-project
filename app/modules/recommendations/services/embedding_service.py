@@ -1,4 +1,6 @@
+import asyncio
 import logging
+
 from google import genai
 from google.genai import types
 
@@ -10,10 +12,6 @@ _client = genai.Client(api_key=settings.gemini_api_key)
 
 
 def _packageToEmbeddingText(package: dict) -> str:
-    """
-    Builds the text blob that gets embedded for a package. Keep this
-    consistent with whatever fields you want semantic search to match on.
-    """
     parts = [
         package.get("title", ""),
         f"From {package.get('from', '')} to {package.get('destination', '')}",
@@ -27,19 +25,18 @@ def _packageToEmbeddingText(package: dict) -> str:
 
 
 async def embedPackage(package: dict) -> list[float]:
-    """Generate an embedding vector for a package document."""
     text = _packageToEmbeddingText(package)
     return await _embedText(text, task_type="RETRIEVAL_DOCUMENT")
 
 
 async def embedQuery(query: str) -> list[float]:
-    """Generate an embedding vector for a user's free-text query."""
     return await _embedText(query, task_type="RETRIEVAL_QUERY")
 
 
 async def _embedText(text: str, task_type: str) -> list[float]:
     try:
-        result = _client.models.embed_content(
+        result = await asyncio.to_thread(
+            _client.models.embed_content,
             model=settings.gemini_embedding_model,
             contents=text,
             config=types.EmbedContentConfig(

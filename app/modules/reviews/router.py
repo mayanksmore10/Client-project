@@ -10,24 +10,12 @@ from app.modules.reviews.models import CreateReviewRequest, Review, ReviewRespon
 router = APIRouter(prefix="/reviews", tags=["reviews"])
 
 
-# ──────────────────────────────────────
-#  Submit a Review
-# ──────────────────────────────────────
-
-
 @router.post("/{booking_id}", response_model=ReviewResponse, status_code=status.HTTP_201_CREATED)
 async def submitReview(
     booking_id: str,
     request: CreateReviewRequest,
     current_user: User = Depends(getCurrentUser),
 ):
-    """
-    Submit a review for a completed trip.
-    Rules:
-      - Booking must belong to the current user
-      - Booking must be confirmed and travel_date must be in the past
-      - User cannot review the same booking twice
-    """
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
@@ -47,7 +35,6 @@ async def submitReview(
             detail="You can only review a trip that has already happened",
         )
 
-    # Prevent duplicate reviews for the same booking
     existing = await Review.find_one(Review.booking_id == booking_id)
     if existing:
         raise HTTPException(
@@ -76,17 +63,8 @@ async def submitReview(
     )
 
 
-# ──────────────────────────────────────
-#  Get Reviews for a Package (Public)
-# ──────────────────────────────────────
-
-
 @router.get("/package/{package_id}")
 async def getPackageReviews(package_id: str):
-    """
-    Public endpoint — returns all reviews for a given package
-    along with the average rating.
-    """
     reviews = (
         await Review.find(Review.package_id == package_id)
         .sort("-created_at")
@@ -115,17 +93,11 @@ async def getPackageReviews(package_id: str):
     }
 
 
-# ──────────────────────────────────────
-#  Delete Own Review
-# ──────────────────────────────────────
-
-
 @router.delete("/{review_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def deleteReview(
     review_id: str,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Delete your own review."""
     review = await Review.get(review_id)
     if not review:
         raise HTTPException(status_code=404, detail="Review not found")

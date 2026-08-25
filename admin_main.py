@@ -23,12 +23,8 @@ admin_app = FastAPI(
     title=f"{settings.app_name} — Admin API",
     description="Internal admin-only API. Not for public access.",
     lifespan=lifespan,
-    # Hide from public docs by disabling openapi in production if needed
-    # openapi_url=None,  # uncomment to fully hide docs in production
 )
 
-# Strict CORS — only allow your admin frontend origin
-# Change this to your actual admin panel URL in production
 admin_app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.admin_cors_allow_origins,
@@ -37,7 +33,6 @@ admin_app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Admin Routers ---
 admin_app.include_router(admin_router)
 
 
@@ -50,16 +45,3 @@ async def root():
 async def healthCheck():
     return {"status": "ok", "service": f"{settings.app_name} Admin"}
 
-
-@admin_app.get("/_debug_hash")
-async def debugHash():
-    import os
-    from app.core.security import verifyPassword
-    h = settings.admin_password_hash
-    ok = verifyPassword("Admin123", h) if h else False
-    return {
-        "full_hash": h,
-        "env_var": os.environ.get("ADMIN_PASSWORD_HASH"),
-        "cwd": os.getcwd(),
-        "verify_result": ok,
-    }

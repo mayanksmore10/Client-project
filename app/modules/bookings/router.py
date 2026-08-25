@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -21,7 +21,6 @@ router = APIRouter(prefix="/bookings", tags=["bookings"])
 
 
 def _generateBookingId() -> str:
-    """Generate a unique booking ID like BK-20260812-A1B2."""
     today = date.today().strftime("%Y%m%d")
     short_id = uuid.uuid4().hex[:4].upper()
     return f"BK-{today}-{short_id}"
@@ -63,11 +62,6 @@ def _toDetail(b: Booking) -> BookingDetailResponse:
     )
 
 
-# ──────────────────────────────────────
-#  Booking flow
-# ──────────────────────────────────────
-
-
 @router.post("/initiate", status_code=201)
 async def initiateBooking(
     request: InitiateBookingRequest,
@@ -80,7 +74,6 @@ async def initiateBooking(
     if request.travel_date not in package.available_dates:
         raise HTTPException(status_code=400, detail="Selected date is not available for this package")
 
-    # Validate children pricing
     child_count = request.child_count
     price_per_child = package.price_per_child or 0.0
     if child_count > 0 and not package.price_per_child:
@@ -89,7 +82,6 @@ async def initiateBooking(
             detail="This package does not support children pricing"
         )
 
-    # Calculate pricing
     room_map = {r.room_type: r for r in package.room_options}
     room_charges = 0.0
     for rs in request.rooms:
@@ -187,20 +179,14 @@ async def confirmBooking(
     if booking.status != "draft":
         raise HTTPException(status_code=400, detail="Booking is no longer in draft status")
 
-    # Validate completeness
     if len(booking.guests) != booking.adult_count:
         raise HTTPException(status_code=400, detail="Guest details are incomplete")
 
     booking.status = "confirmed"
-    booking.confirmed_at = datetime.utcnow()
+    booking.confirmed_at = datetime.now(timezone.utc)
     await booking.save()
 
     return _toDetail(booking)
-
-
-# ──────────────────────────────────────
-#  View & Cancel
-# ──────────────────────────────────────
 
 
 @router.get("/my")
@@ -208,10 +194,6 @@ async def myBookings(
     status: str | None = Query(None, pattern="^(upcoming|past|cancelled|all)$"),
     current_user: User = Depends(getCurrentUser),
 ):
-    """
-    Booking history — split into upcoming and past.
-    ?status=upcoming | past | cancelled | all (default: returns both upcoming & past).
-    """
     user_id = str(current_user.id)
     today = date.today()
 
@@ -255,7 +237,6 @@ async def getBooking(
     booking_id: str,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Get full booking details."""
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
@@ -269,7 +250,6 @@ async def cancelBooking(
     booking_id: str,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Cancel an upcoming booking (only if confirmed and travel date is in the future)."""
     booking = await Booking.find_one(Booking.booking_id == booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
@@ -281,7 +261,7 @@ async def cancelBooking(
         raise HTTPException(status_code=400, detail="Cannot cancel a past booking")
 
     booking.status = "cancelled"
-    booking.cancelled_at = datetime.utcnow()
+    booking.cancelled_at = datetime.now(timezone.utc)
     await booking.save()
 
     return _toDetail(booking)

@@ -13,10 +13,8 @@ async def getCurrentUser(
     credentials: HTTPAuthorizationCredentials | None = Depends(_bearer_scheme),
 ) -> User:
 
-    # 1. Try to get token from HttpOnly Cookie first
     token = request.cookies.get("access_token")
 
-    # 2. Fall back to Authorization: Bearer <token> header
     if not token and credentials:
         token = credentials.credentials
 
@@ -65,11 +63,6 @@ async def requireAdmin(
     request: Request,
     credentials: HTTPAuthorizationCredentials | None = Depends(_bearer_scheme),
 ) -> dict:
-    """
-    Admin-only guard. Validates tokens using the ADMIN JWT secret.
-    Regular user tokens (signed with the user JWT secret) will be rejected
-    even if the user has role='admin' in the DB.
-    """
     token = request.cookies.get("admin_access_token")
     if not token and credentials:
         token = credentials.credentials

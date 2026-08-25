@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 
@@ -40,9 +41,9 @@ separate part of the system renders the package cards."""
 
 
 async def parseQuery(query: str) -> dict:
-    """Extract structured constraints from the user's free-text query."""
     try:
-        response = _client.models.generate_content(
+        response = await asyncio.to_thread(
+            _client.models.generate_content,
             model=settings.gemini_generation_model,
             contents=query,
             config=types.GenerateContentConfig(
@@ -58,7 +59,6 @@ async def parseQuery(query: str) -> dict:
 
 
 async def generateRecommendation(query: str, retrieved_packages: list[dict]) -> str:
-    """Generate the final grounded, conversational recommendation message."""
     if not retrieved_packages:
         return (
             "I couldn't find any packages in our catalog that closely match your "
@@ -87,7 +87,8 @@ async def generateRecommendation(query: str, retrieved_packages: list[dict]) -> 
     prompt = f"User request: {query}\n\nAvailable matching packages (JSON):\n{context_blob}"
 
     try:
-        response = _client.models.generate_content(
+        response = await asyncio.to_thread(
+            _client.models.generate_content,
             model=settings.gemini_generation_model,
             contents=prompt,
             config=types.GenerateContentConfig(

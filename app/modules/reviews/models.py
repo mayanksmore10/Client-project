@@ -6,9 +6,9 @@ from pydantic import BaseModel, Field
 
 class Review(Document):
     user_id: str
-    user_name: str = ""  # denormalized for display
+    user_name: str = ""
     package_id: str
-    booking_id: str = ""  # can only review after completing a trip
+    booking_id: str = ""
     rating: int = Field(..., ge=1, le=5)
     comment: str = ""
     photos: list[str] = []

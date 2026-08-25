@@ -3,7 +3,7 @@ from typing import Optional
 
 from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from app.core.config import settings
 from app.core.dependencies import requireAdmin
@@ -15,23 +15,12 @@ from app.modules.packages.models import RoomOption, TourPackage
 router = APIRouter(prefix="/admin", tags=["admin"])
 
 
-
-# ──────────────────────────────────────
-#  Admin Login
-# ──────────────────────────────────────
-
-
 class AdminLoginRequest(BaseModel):
     password: str
 
 
 @router.post("/auth/login")
 async def adminLogin(request: AdminLoginRequest, response: Response):
-    """
-    Single admin account login.
-    Only password is required — credentials stored in .env.
-    Returns a token signed with the admin JWT secret.
-    """
     if not settings.admin_jwt_secret_key:
         raise HTTPException(
             status_code=500,
@@ -57,7 +46,6 @@ async def adminLogin(request: AdminLoginRequest, response: Response):
 
 @router.post("/auth/logout")
 async def adminLogout(response: Response):
-    """Clear the admin session cookie."""
     response.delete_cookie(
         key="admin_access_token",
         httponly=True,
@@ -65,14 +53,6 @@ async def adminLogout(response: Response):
         samesite=settings.cookie_samesite,
     )
     return {"message": "Admin logged out successfully"}
-
-
-
-# ──────────────────────────────────────
-#  Response schemas
-# ──────────────────────────────────────
-#  Response schemas
-# ──────────────────────────────────────
 
 
 class AdminUserResponse(BaseModel):
@@ -87,15 +67,9 @@ class AdminUserResponse(BaseModel):
 
 
 class AdminUserDetailResponse(AdminUserResponse):
-    """Full profile + booking summary for the user detail view."""
     total_bookings: int
     confirmed_bookings: int
     cancelled_bookings: int
-
-
-# ──────────────────────────────────────
-#  Helper
-# ──────────────────────────────────────
 
 
 def _toAdminUser(u: User) -> AdminUserResponse:
@@ -111,9 +85,17 @@ def _toAdminUser(u: User) -> AdminUserResponse:
     )
 
 
-# ──────────────────────────────────────
-#  User Management
-# ──────────────────────────────────────
+async def _buildUserDetail(user: User) -> AdminUserDetailResponse:
+    user_id = str(user.id)
+    all_bookings = await Booking.find(Booking.user_id == user_id).to_list()
+    confirmed = sum(1 for b in all_bookings if b.status == "confirmed")
+    cancelled = sum(1 for b in all_bookings if b.status == "cancelled")
+    return AdminUserDetailResponse(
+        **_toAdminUser(user).model_dump(),
+        total_bookings=len(all_bookings),
+        confirmed_bookings=confirmed,
+        cancelled_bookings=cancelled,
+    )
 
 
 @router.get("/users", response_model=dict)
@@ -124,10 +106,6 @@ async def listUsers(
     role: str | None = Query(None, pattern="^(user|admin)$"),
     _: dict = Depends(requireAdmin),
 ):
-    """
-    List all users with optional search and role filter.
-    Search matches against email and full_name (case-insensitive).
-    """
     query: dict = {}
 
     if role:
@@ -156,7 +134,6 @@ async def getUserDetail(
     search: str = Query(..., description="Name or email to search"),
     _: dict = Depends(requireAdmin),
 ):
-    """Get full user detail by name or email (case-insensitive, first match)."""
     user = await User.find_one({
         "$or": [
             {"email": {"$regex": search, "$options": "i"}},
@@ -167,25 +144,7 @@ async def getUserDetail(
     if not user:
         raise HTTPException(status_code=404, detail="No user found matching that name or email")
 
-    user_id = str(user.id)
-    all_bookings = await Booking.find(Booking.user_id == user_id).to_list()
-    confirmed = sum(1 for b in all_bookings if b.status == "confirmed")
-    cancelled = sum(1 for b in all_bookings if b.status == "cancelled")
-
-    return AdminUserDetailResponse(
-        id=user_id,
-        email=user.email,
-        full_name=user.full_name,
-        phone=user.phone,
-        gender=user.gender,
-        role=user.role,
-        created_at=user.created_at,
-        profile_photo_url=user.profile_photo_url,
-        total_bookings=len(all_bookings),
-        confirmed_bookings=confirmed,
-        cancelled_bookings=cancelled,
-    )
-
+    return await _buildUserDetail(user)
 
 
 @router.get("/users/{identifier}", response_model=AdminUserDetailResponse)
@@ -193,21 +152,14 @@ async def getUserById(
     identifier: str,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Get full user detail by ID, name, or email.
-    - If `identifier` is a valid MongoDB ObjectId → lookup by ID.
-    - Otherwise → case-insensitive search on full_name or email (first match).
-    """
     user: User | None = None
 
-    # Try ObjectId first
     try:
         oid = PydanticObjectId(identifier)
         user = await User.get(oid)
     except Exception:
         pass
 
-    # Fall back to name / email search
     if not user:
         user = await User.find_one({
             "$or": [
@@ -222,24 +174,7 @@ async def getUserById(
             detail="No user found with that ID, name, or email",
         )
 
-    user_id = str(user.id)
-    all_bookings = await Booking.find(Booking.user_id == user_id).to_list()
-    confirmed = sum(1 for b in all_bookings if b.status == "confirmed")
-    cancelled = sum(1 for b in all_bookings if b.status == "cancelled")
-
-    return AdminUserDetailResponse(
-        id=user_id,
-        email=user.email,
-        full_name=user.full_name,
-        phone=user.phone,
-        gender=user.gender,
-        role=user.role,
-        created_at=user.created_at,
-        profile_photo_url=user.profile_photo_url,
-        total_bookings=len(all_bookings),
-        confirmed_bookings=confirmed,
-        cancelled_bookings=cancelled,
-    )
+    return await _buildUserDetail(user)
 
 
 @router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -247,9 +182,6 @@ async def deleteUser(
     user_id: str,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Permanently delete a user account and all their bookings.
-    """
     try:
         user = await User.get(PydanticObjectId(user_id))
     except Exception:
@@ -262,16 +194,7 @@ async def deleteUser(
     await user.delete()
 
 
-# ──────────────────────────────────────
-#  Packages Admin
-# ──────────────────────────────────────
-
-
 class AdminCreatePackageRequest(BaseModel):
-    """
-    Full schema matching the dataset structure.
-    All fields mirror TourPackage document fields exactly.
-    """
     package_id: str = Field(..., description="Unique human-readable ID, e.g. GOA_3D2N_001")
     title: str
     from_: str = Field(..., alias="from", description="Departure city / region")
@@ -295,12 +218,10 @@ class AdminCreatePackageRequest(BaseModel):
     available_dates: list[date] = []
     room_options: list[RoomOption] = []
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class AdminUpdatePackageRequest(BaseModel):
-    """Partial update — all fields optional."""
     title: Optional[str] = None
     from_: Optional[str] = Field(None, alias="from")
     destination: Optional[str] = None
@@ -320,8 +241,7 @@ class AdminUpdatePackageRequest(BaseModel):
     available_dates: Optional[list[date]] = None
     room_options: Optional[list[RoomOption]] = None
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 @router.get("/packages", response_model=dict)
@@ -333,10 +253,6 @@ async def adminListPackages(
     destination: str | None = Query(None, description="Filter by destination"),
     _: dict = Depends(requireAdmin),
 ):
-    """
-    List all tour packages with optional search and filter.
-    Embedding field is always excluded from responses.
-    """
     query: dict = {}
 
     if search:
@@ -369,7 +285,6 @@ async def adminGetPackage(
     package_id: str,
     _: dict = Depends(requireAdmin),
 ):
-    """Get full details of a single package by its package_id."""
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
@@ -381,12 +296,6 @@ async def adminCreatePackage(
     request: AdminCreatePackageRequest,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Create a new tour package.
-    - package_id must be unique.
-    - package_url defaults to /packages/{package_id} if not provided.
-    """
-    # Enforce unique package_id
     existing = await TourPackage.find_one(TourPackage.package_id == request.package_id)
     if existing:
         raise HTTPException(
@@ -429,10 +338,6 @@ async def adminReplacePackage(
     request: AdminCreatePackageRequest,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Full replacement of a package (PUT).
-    Preserves the existing MongoDB document _id and embedding.
-    """
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
@@ -468,11 +373,6 @@ async def adminPatchPackage(
     request: AdminUpdatePackageRequest,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Partial update - only provided fields are updated.
-    Uses raw Motor (MongoDB driver) to bypass Pydantic re-validation
-    of older documents missing newer fields (images, room_options, etc.).
-    """
     collection = TourPackage.get_motor_collection()
 
     existing = await collection.find_one({"package_id": package_id}, {"_id": 1})
@@ -508,11 +408,6 @@ async def adminDeletePackage(
     package_id: str,
     _: dict = Depends(requireAdmin),
 ):
-    """
-    Permanently delete a package.
-    Note: existing bookings that reference this package are NOT deleted;
-    they retain their denormalized package_title and destination fields.
-    """
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")

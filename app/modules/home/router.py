@@ -8,7 +8,7 @@ router = APIRouter(tags=["home"])
 
 
 @router.get("/packages/featured")
-async def getFeaturedPackages(limit: int = 6):  
+async def getFeaturedPackages(limit: int = 6):
     packages = await TourPackage.find_all(limit=limit).to_list()
     return [p.model_dump(exclude={"embedding"}) for p in packages]
 
@@ -18,7 +18,6 @@ async def getStats():
     total_bookings = await Booking.find(Booking.status == "completed").count()
     total_reviews = await Review.find_all().count()
 
-    # Approximate guest count from completed bookings
     completed = await Booking.find(Booking.status == "completed").to_list()
     total_guests = sum(b.adult_count for b in completed)
 

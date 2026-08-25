@@ -5,7 +5,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.core.config import settings
 
-# Import all models to register with Beanie
 from app.modules.packages.models import TourPackage
 from app.modules.auth.models import User
 from app.modules.bookings.models import Booking
@@ -14,7 +13,6 @@ from app.modules.contact.models import ContactEnquiry
 
 logger = logging.getLogger(__name__)
 
-# Global client
 client = None
 
 async def connect_to_mongo():
@@ -22,7 +20,7 @@ async def connect_to_mongo():
     client = AsyncIOMotorClient(
         settings.mongodb_uri,
         tlsCAFile=certifi.where(),
-        tlsAllowInvalidCertificates=True,
+        tlsAllowInvalidCertificates=False,
     )
     db = client[settings.mongodb_db_name]
     

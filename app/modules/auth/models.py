@@ -1,29 +1,26 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 from beanie import Document
+from pymongo import IndexModel, ASCENDING
 from pydantic import BaseModel, EmailStr, Field
 
 
 class User(Document):
     email: EmailStr
-    password_hash: str  # never the plain password — see core/security.py
+    password_hash: str
     full_name: str | None = None
     phone: str | None = None
-    gender: str | None = None  # "male" / "female" / "other"
+    gender: str | None = None
     date_of_birth: date | None = None
     profile_photo_url: str | None = None
-    role: str = "user"  # room for "admin" later, per the design doc's scope note
+    role: str = "user"
     created_at: datetime = Field(default_factory=datetime.utcnow)
-
-    # --- Password reset ---
-    password_reset_token: str | None = None
-    password_reset_expires: datetime | None = None
 
     class Settings:
         name = "users"
-
-
-# --- Request/response schemas ---
+        indexes = [
+            IndexModel([("email", ASCENDING)], unique=True),
+        ]
 
 
 class RegisterRequest(BaseModel):
@@ -62,13 +59,4 @@ class UpdateProfileRequest(BaseModel):
 
 class ChangePasswordRequest(BaseModel):
     current_password: str
-    new_password: str = Field(..., min_length=8)
-
-
-class ForgotPasswordRequest(BaseModel):
-    email: EmailStr
-
-
-class ResetPasswordRequest(BaseModel):
-    token: str
     new_password: str = Field(..., min_length=8)

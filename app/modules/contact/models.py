@@ -15,9 +15,6 @@ class ContactEnquiry(Document):
         name = "contact_enquiries"
 
 
-# --- Request schema ---
-
-
 class ContactRequest(BaseModel):
     name: str = Field(..., min_length=2)
     email: EmailStr

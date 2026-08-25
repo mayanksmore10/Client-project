@@ -2,16 +2,16 @@
 from datetime import date
 from typing import Optional
 from beanie import Document
-from pydantic import BaseModel, Field, field_validator
+from pymongo import IndexModel, ASCENDING
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class RoomOption(BaseModel):
-    """A room type offered for a package (e.g. Single, Double, Triple)."""
-    room_type: str  # "single" / "double" / "triple"
-    label: str = ""  # Human-readable, e.g. "Deluxe Double Room"
+    room_type: str
+    label: str = ""
     price_per_night: float = 0
     max_occupancy: int = 2
-    available_count: int = 10  # how many of this room type are available
+    available_count: int = 10
 
 
 class TourPackage(Document):
@@ -22,7 +22,7 @@ class TourPackage(Document):
     days: int = 0
     nights: int = 0
     price_per_person: float = 0
-    price_per_child: Optional[float] = None   # None = children not allowed / not specified
+    price_per_child: Optional[float] = None
     gst_included: bool = False
     inclusions: list[str] = []
     exclusions: list[str] = []
@@ -30,17 +30,12 @@ class TourPackage(Document):
     package_url: str = ""
     embedding: Optional[list[float]] = None
 
-    # --- New fields ---
-    traveler_type: list[str] = []        # e.g. ["family", "honeymoon", "solo", "senior"]
-    images: list[str] = []               # Photo URLs
-    available_dates: list[date] = []     # Dates when the tour runs
-    room_options: list[RoomOption] = []   # Room types with pricing
-    highlights: list[str] = []           # Short highlights for card view
-    description: str = ""                # Short marketing description
-
-    # ── Tolerate null values in older MongoDB documents ──────────────────────
-    # When fields were added to the model after data was already inserted,
-    # MongoDB may store them as null. These validators convert null → default.
+    traveler_type: list[str] = []
+    images: list[str] = []
+    available_dates: list[date] = []
+    room_options: list[RoomOption] = []
+    highlights: list[str] = []
+    description: str = ""
 
     @field_validator("from_", "destination", "title", "package_url", "description", mode="before")
     @classmethod
@@ -82,11 +77,13 @@ class TourPackage(Document):
 
     class Settings:
         name = "packages"
+        indexes = [
+            IndexModel([("package_id", ASCENDING)], unique=True),
+        ]
 
-
-    class Config:
-        populate_by_name = True
-        json_schema_extra = {
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_schema_extra={
             "example": {
                 "package_id": "GOA_3D2N_001",
                 "title": "Mumbai to Goa 3D/2N Package",
@@ -112,5 +109,5 @@ class TourPackage(Document):
                 ],
                 "highlights": ["Beach activities", "Water sports"],
             }
-        }
-
+        },
+    )

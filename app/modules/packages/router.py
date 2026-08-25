@@ -11,14 +11,8 @@ from app.modules.auth.models import User
 router = APIRouter(prefix="/packages", tags=["packages"])
 
 
-# ──────────────────────────────────────
-#  Basic listing & detail
-# ──────────────────────────────────────
-
-
 @router.get("")
 async def listPackages(limit: int = 20):
-    """List packages (no semantic search) — useful for debugging / admin views."""
     packages = await TourPackage.find_all(limit=limit).to_list()
     return [p.model_dump(exclude={"embedding"}) for p in packages]
 
@@ -33,7 +27,6 @@ async def searchPackages(
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=50),
 ):
-    """Filter packages by destination, budget, days, and traveler type. Paginated."""
     query = {}
 
     if destination:
@@ -62,7 +55,6 @@ async def searchPackages(
 
 @router.get("/by-destination/{destination}")
 async def getByDestination(destination: str, limit: int = 20):
-    """Browse all packages for a specific destination."""
     packages = await TourPackage.find(
         {"destination": {"$regex": destination, "$options": "i"}}
     ).limit(limit).to_list()
@@ -71,21 +63,14 @@ async def getByDestination(destination: str, limit: int = 20):
 
 @router.get("/by-type/{traveler_type}")
 async def getByTravelerType(traveler_type: str, limit: int = 20):
-    """Browse packages tagged for a specific traveler type."""
     packages = await TourPackage.find(
         {"traveler_type": traveler_type}
     ).limit(limit).to_list()
     return [p.model_dump(exclude={"embedding"}) for p in packages]
 
 
-# ──────────────────────────────────────
-#  Package detail page helpers
-# ──────────────────────────────────────
-
-
 @router.get("/{package_id}")
 async def getPackage(package_id: str):
-    """Fetch a single package by ID — used by the 'View Package' redirect flow."""
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
@@ -94,12 +79,10 @@ async def getPackage(package_id: str):
 
 @router.get("/{package_id}/available-dates")
 async def getAvailableDates(package_id: str):
-    """Return available travel dates for this package."""
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
 
-    # Filter out past dates
     today = date.today()
     future_dates = [d for d in package.available_dates if d >= today]
     return {"package_id": package_id, "available_dates": sorted(future_dates)}
@@ -107,7 +90,6 @@ async def getAvailableDates(package_id: str):
 
 @router.get("/{package_id}/rooms")
 async def getRoomOptions(package_id: str, travel_date: date | None = None):
-    """After user selects a date, return available room types with pricing."""
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
@@ -122,16 +104,8 @@ async def getRoomOptions(package_id: str, travel_date: date | None = None):
     }
 
 
-
-
-# ──────────────────────────────────────
-#  Reviews
-# ──────────────────────────────────────
-
-
 @router.get("/{package_id}/reviews")
 async def getReviews(package_id: str, limit: int = 20):
-    """Fetch review cards for a specific package."""
     reviews = await Review.find(
         Review.package_id == package_id
     ).sort("-created_at").limit(limit).to_list()
@@ -155,8 +129,6 @@ async def createReview(
     request: CreateReviewRequest,
     current_user: User = Depends(getCurrentUser),
 ):
-    """Authenticated user submits a review for a package."""
-    # Verify package exists
     package = await TourPackage.find_one(TourPackage.package_id == package_id)
     if not package:
         raise HTTPException(status_code=404, detail="Package not found")
