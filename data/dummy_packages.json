@@ -62,10 +62,12 @@
     ],
     "description": "Cruise through tranquil backwaters on a traditional houseboat, explore lush tea plantations, and soak in the serene beauty of God's Own Country.",
     "package_url": "/packages/KERALA_BACKWATERS_5D4N_002",
+    "images": ["/images/kerala_houseboat_sunset.jpg"],
     "traveler_type": [
       "family",
       "friends"
     ],
+
     "available_dates": [
       "2026-09-07",
       "2026-09-14",
@@ -101,10 +103,12 @@
     ],
     "description": "Sun, sand, and sea come together in this relaxed getaway featuring pristine beaches, vibrant nightlife, and Portuguese-era architecture.",
     "package_url": "/packages/GOA_BEACH_4D3N_003",
+    "images": ["/images/goa_baga_sunset.jpg", "/images/Goa Beach Escape - Baga Beach.png"],
     "traveler_type": [
       "family",
       "friends"
     ],
+
     "available_dates": [
       "2026-09-11",
       "2026-09-29",
@@ -139,9 +143,11 @@
     ],
     "description": "Explore majestic forts, opulent palaces, and desert landscapes on this grand tour through the land of kings.",
     "package_url": "/packages/ROYAL_RAJASTHAN_8D7N_004",
+    "images": ["/images/jodhpur_mehrangarh_fort.jpg"],
     "traveler_type": [
       "friends"
     ],
+
     "available_dates": [
       "2026-09-01",
       "2026-09-20",
@@ -176,10 +182,12 @@
     ],
     "description": "Escape to the cool hills of Himachal Pradesh with scenic mountain views, snow-capped peaks, and charming colonial towns.",
     "package_url": "/packages/HIMALAYAN_MANALISHIMLA_6D5N_005",
+    "images": ["/images/solang_valley_manali.jpg"],
     "traveler_type": [
       "honeymoon",
       "solo"
     ],
+
     "available_dates": [
       "2026-09-06",
       "2026-09-14",
@@ -214,9 +222,11 @@
     ],
     "description": "A thrilling high-altitude adventure through dramatic landscapes, Buddhist monasteries, and the stunning blue waters of Pangong Lake.",
     "package_url": "/packages/LADAKH_ADVENTURE_7D6N_006",
+    "images": ["/images/pangong_lake_ladakh.jpg"],
     "traveler_type": [
       "solo"
     ],
+
     "available_dates": [
       "2026-09-05",
       "2026-09-24",
@@ -287,6 +297,7 @@
     ],
     "description": "Discover turquoise waters, coral reefs, and pristine beaches on this tropical island adventure perfect for relaxation and water sports.",
     "package_url": "/packages/ANDAMAN_ISLANDS_6D5N_008",
+    "images": ["/images/tropical_white_sand_beach.jpg"],
     "traveler_type": [
       "friends",
       "solo"
@@ -301,6 +312,8 @@
   {
     "package_id": "DARJEELINGGANGTOK_HILL_6D5N_009",
     "title": "Darjeeling-Gangtok Hill Tour",
+    "images": ["/images/darjeeling_tea_gardens.jpg"],
+
     "from": "Multiple / Not specified in source data",
     "destination": "Darjeeling, Gangtok",
     "days": 6,
@@ -363,6 +376,7 @@
     ],
     "description": "Blend the energy of India's financial capital with the misty hill charm of Lonavala's waterfalls and viewpoints.",
     "package_url": "/packages/MUMBAILONAVALA_GETAWAY_4D3N_010",
+    "images": ["/images/lonavala_monsoon_waterfall.jpg"],
     "traveler_type": [
       "solo"
     ],
@@ -376,6 +390,8 @@
   {
     "package_id": "RISHIKESHHARIDWAR_YOGA_4D3N_011",
     "title": "Rishikesh-Haridwar Yoga & Adventure",
+    "images": ["/images/rishikesh_laxman_jhula.jpg"],
+
     "from": "Multiple / Not specified in source data",
     "destination": "Rishikesh, Haridwar",
     "days": 4,
@@ -438,6 +454,7 @@
     ],
     "description": "Experience heaven on earth with houseboat stays on Dal Lake, snow-capped mountains, and lush green valleys.",
     "package_url": "/packages/KASHMIR_PARADISE_6D5N_012",
+    "images": ["/images/kashmir_dal_lake.jpg"],
     "traveler_type": [
       "friends",
       "group"
@@ -513,6 +530,7 @@
     ],
     "description": "Journey through the rolling hills of the Nilgiris on the famous toy train, past tea estates and botanical gardens.",
     "package_url": "/packages/OOTYCOONOOR_NILGIRI_5D4N_014",
+    "images": ["/images/ooty_nilgiri_toy_train.jpg"],
     "traveler_type": [
       "honeymoon",
       "senior",
@@ -529,6 +547,8 @@
   {
     "package_id": "HAMPI_HERITAGE_3D2N_015",
     "title": "Hampi Heritage Discovery",
+    "images": ["/images/hampi_stone_chariot.jpg"],
+
     "from": "Multiple / Not specified in source data",
     "destination": "Hampi, Hospet",
     "days": 3,
@@ -629,6 +649,7 @@
     ],
     "description": "Witness the surreal white salt desert glowing under moonlight, complete with folk dance, music, and vibrant local culture.",
     "package_url": "/packages/RANN_OF_4D3N_017",
+    "images": ["/images/rann_of_kutch_desert.jpg"],
     "traveler_type": [
       "honeymoon"
     ],
@@ -667,6 +688,7 @@
     ],
     "description": "Discover royal palaces and misty hills in this combination tour through Karnataka's cultural and natural highlights.",
     "package_url": "/packages/MYSORECOORG_ROYAL_5D4N_018",
+    "images": ["/images/mysore_palace_illuminated.jpg"],
     "traveler_type": [
       "family",
       "friends",
@@ -706,6 +728,7 @@
     ],
     "description": "Cruise through mangrove forests in search of the elusive Royal Bengal Tiger in the world's largest mangrove delta.",
     "package_url": "/packages/SUNDARBANS_WILDLIFE_4D3N_019",
+    "images": ["/images/sundarbans_wildlife_safari.jpg"],
     "traveler_type": [
       "family",
       "group",
@@ -722,6 +745,8 @@
   {
     "package_id": "SPITI_VALLEY_8D7N_020",
     "title": "Spiti Valley Offbeat Expedition",
+    "images": ["/images/spiti_valley_chandratal.jpg"],
+
     "from": "Multiple / Not specified in source data",
     "destination": "Kaza, Spiti Valley, Chandratal",
     "days": 8,
@@ -762,6 +787,7 @@
   {
     "package_id": "KONARKPURIBHUBANESWAR_TEMPLE_4D3N_021",
     "title": "Konark-Puri-Bhubaneswar Temple Trail",
+    "images": ["/images/konark_sun_temple.jpg"],
     "from": "Multiple / Not specified in source data",
     "destination": "Bhubaneswar, Puri, Konark",
     "days": 4,
@@ -800,6 +826,7 @@
   {
     "package_id": "NORTHEAST_EXPLORER_6D5N_022",
     "title": "Northeast Explorer: Assam-Meghalaya",
+    "images": ["/images/northeast_living_root_bridge.jpg"],
     "from": "Multiple / Not specified in source data",
     "destination": "Guwahati, Shillong, Cherrapunji",
     "days": 6,
@@ -836,4 +863,4 @@
     ],
     "embedding": []
   }
-]
+]

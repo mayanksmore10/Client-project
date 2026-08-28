@@ -29,7 +29,7 @@ async def submitReview(
             detail="You can only review a confirmed or completed booking",
         )
 
-    if booking.travel_date >= date.today():
+    if booking.status != "completed" and booking.travel_date >= date.today():
         raise HTTPException(
             status_code=400,
             detail="You can only review a trip that has already happened",

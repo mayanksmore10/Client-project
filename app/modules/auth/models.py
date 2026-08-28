@@ -55,6 +55,8 @@ class UpdateProfileRequest(BaseModel):
     phone: str | None = None
     gender: str | None = None
     date_of_birth: date | None = None
+    profile_photo_url: str | None = None
+
 
 
 class ChangePasswordRequest(BaseModel):

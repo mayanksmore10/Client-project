@@ -20,3 +20,30 @@ class ContactRequest(BaseModel):
     email: EmailStr
     phone: str = ""
     message: str = Field(..., min_length=10)
+
+
+class CustomPackageEnquiry(Document):
+    destination: str
+    days: str = ""
+    budget: str = ""
+    guests: str = ""
+    name: str
+    email: str
+    phone: str = ""
+    requirements: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Settings:
+        name = "custom_package_enquiries"
+
+
+class CustomEnquiryRequest(BaseModel):
+    destination: str
+    days: str = ""
+    budget: str = ""
+    guests: str = ""
+    name: str
+    email: EmailStr
+    phone: str = ""
+    requirements: str
+

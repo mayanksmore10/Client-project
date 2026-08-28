@@ -9,7 +9,7 @@ from app.modules.packages.models import TourPackage
 from app.modules.auth.models import User
 from app.modules.bookings.models import Booking
 from app.modules.reviews.models import Review
-from app.modules.contact.models import ContactEnquiry
+from app.modules.contact.models import ContactEnquiry, CustomPackageEnquiry
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +26,9 @@ async def connect_to_mongo():
     
     await init_beanie(
         database=db,
-        document_models=[TourPackage, User, Booking, Review, ContactEnquiry],
+        document_models=[TourPackage, User, Booking, Review, ContactEnquiry, CustomPackageEnquiry],
     )
+
     logger.info("Connected to MongoDB Atlas database '%s'", settings.mongodb_db_name)
 
 async def close_mongo_connection():

@@ -29,16 +29,20 @@ async def searchPackages(
 ):
     query = {}
 
-    if destination:
-        query["destination"] = {"$regex": destination, "$options": "i"}
+    if destination and destination.strip():
+        dest_term = destination.strip()
+        query["$or"] = [
+            {"destination": {"$regex": dest_term, "$options": "i"}},
+            {"title": {"$regex": dest_term, "$options": "i"}},
+        ]
     if budget_min is not None:
         query.setdefault("price_per_person", {})["$gte"] = round(budget_min)
     if budget_max is not None:
         query.setdefault("price_per_person", {})["$lte"] = round(budget_max)
     if days is not None:
         query["days"] = days
-    if traveler_type:
-        query["traveler_type"] = traveler_type
+    if traveler_type and traveler_type.strip():
+        query["traveler_type"] = {"$regex": traveler_type.strip(), "$options": "i"}
 
     skip = (page - 1) * page_size
 
@@ -51,6 +55,7 @@ async def searchPackages(
         "page_size": page_size,
         "packages": [p.model_dump(exclude={"embedding"}) for p in packages],
     }
+
 
 
 @router.get("/by-destination/{destination}")

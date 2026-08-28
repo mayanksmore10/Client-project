@@ -9,6 +9,7 @@ from app.modules.bookings.models import (
     BookingDetailResponse,
     BookingHistoryResponse,
     BookingSummaryResponse,
+    ConfirmBookingRequest,
     InitiateBookingRequest,
     PriceBreakdown,
     SaveGuestsRequest,
@@ -27,6 +28,7 @@ def _generateBookingId() -> str:
 
 
 def _toSummary(b: Booking) -> BookingSummaryResponse:
+    calc_paid = b.paid_amount if (b.paid_amount and b.paid_amount > 0) else (b.price_breakdown.total / 2 if b.status == "token_paid" else b.price_breakdown.total)
     return BookingSummaryResponse(
         booking_id=b.booking_id,
         package_id=b.package_id,
@@ -36,12 +38,14 @@ def _toSummary(b: Booking) -> BookingSummaryResponse:
         adult_count=b.adult_count,
         child_count=b.child_count,
         total=b.price_breakdown.total,
+        paid_amount=calc_paid,
         status=b.status,
         created_at=b.created_at,
     )
 
 
 def _toDetail(b: Booking) -> BookingDetailResponse:
+    calc_paid = b.paid_amount if (b.paid_amount and b.paid_amount > 0) else (b.price_breakdown.total / 2 if b.status == "token_paid" else b.price_breakdown.total)
     return BookingDetailResponse(
         booking_id=b.booking_id,
         user_id=b.user_id,
@@ -59,7 +63,9 @@ def _toDetail(b: Booking) -> BookingDetailResponse:
         created_at=b.created_at,
         confirmed_at=b.confirmed_at,
         cancelled_at=b.cancelled_at,
+        paid_amount=calc_paid,
     )
+
 
 
 @router.post("/initiate", status_code=201)
@@ -142,6 +148,10 @@ async def saveGuests(
             detail=f"Expected {booking.adult_count} guest(s), got {len(request.guests)}",
         )
 
+    for guest in request.guests:
+        if not guest.name and (guest.first_name or guest.last_name):
+            guest.name = f"{guest.first_name or ''} {guest.last_name or ''}".strip()
+
     booking.guests = request.guests
     await booking.save()
     return _toDetail(booking)
@@ -169,6 +179,7 @@ async def setPaymentMethod(
 @router.post("/{booking_id}/confirm")
 async def confirmBooking(
     booking_id: str,
+    body: ConfirmBookingRequest | None = None,
     current_user: User = Depends(getCurrentUser),
 ):
     booking = await Booking.find_one(Booking.booking_id == booking_id)
@@ -182,11 +193,17 @@ async def confirmBooking(
     if len(booking.guests) != booking.adult_count:
         raise HTTPException(status_code=400, detail="Guest details are incomplete")
 
+    if body and body.paid_amount:
+        booking.paid_amount = body.paid_amount
+    else:
+        booking.paid_amount = booking.price_breakdown.total
+
     booking.status = "confirmed"
     booking.confirmed_at = datetime.now(timezone.utc)
     await booking.save()
 
     return _toDetail(booking)
+
 
 
 @router.get("/my")

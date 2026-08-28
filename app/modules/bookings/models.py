@@ -6,11 +6,17 @@ from pydantic import BaseModel, Field
 
 
 class GuestDetail(BaseModel):
-    full_name: str
-    age: int
-    gender: str
-    state: str
-    birthdate: date
+    name: str = ""
+    first_name: str | None = None
+    last_name: str | None = None
+    age: int | None = None
+    gender: str | None = None
+    date_of_birth: str | None = None
+    phone: str | None = None
+    country_code: str | None = "+91"
+    email: str | None = None
+    nationality: str | None = "India"
+    state: str | None = None
 
 
 class RoomSelection(BaseModel):
@@ -41,6 +47,7 @@ class Booking(Document):
     child_count: int = 0
     guests: list[GuestDetail] = []
     price_breakdown: PriceBreakdown = Field(default_factory=PriceBreakdown)
+    paid_amount: float = 0.0
     payment_method: str | None = None
     status: str = "draft"
     created_at: datetime = Field(default_factory=datetime.utcnow)
@@ -67,6 +74,10 @@ class SaveGuestsRequest(BaseModel):
     guests: list[GuestDetail]
 
 
+class ConfirmBookingRequest(BaseModel):
+    paid_amount: float | None = None
+
+
 class SetPaymentMethodRequest(BaseModel):
     payment_method: str = Field(
         ..., pattern="^(upi|card|net_banking|pay_at_counter)$"
@@ -82,8 +93,10 @@ class BookingSummaryResponse(BaseModel):
     adult_count: int
     child_count: int
     total: float
+    paid_amount: float = 0.0
     status: str
     created_at: datetime
+
 
 
 class BookingDetailResponse(BaseModel):
@@ -101,8 +114,9 @@ class BookingDetailResponse(BaseModel):
     payment_method: str | None
     status: str
     created_at: datetime
-    confirmed_at: datetime | None
-    cancelled_at: datetime | None
+    confirmed_at: datetime | None = None
+    cancelled_at: datetime | None = None
+    paid_amount: float = 0.0
 
 
 class BookingHistoryResponse(BaseModel):

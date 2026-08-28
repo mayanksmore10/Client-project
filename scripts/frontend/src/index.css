@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #1a6b4a;
+  --primary-dark: #145538;
+  --primary-light: #e8f5ee;
+  --primary-mid: #2d8c5e;
+  --bg: #ffffff;
+  --bg-page: #f4f1ec;
+  --bg-card: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --border: #d8d3cc;
+  --border-light: #ebebeb;
+  --orange: #e67e22;
+  --star: #f5a623;
+  --red: #c0392b;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+  --shadow-md: 0 2px 16px rgba(0,0,0,0.09);
+  --shadow-lg: 0 4px 32px rgba(0,0,0,0.12);
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --nav-height: 60px;
+  --max-w: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: var(--font); }
+input, select, textarea { font-family: var(--font); }
+img { max-width: 100%; display: block; }
+
+/* ── Layout ── */
+.site-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+.page-main { flex: 1; padding-top: var(--nav-height); }
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 768px) { .container { padding: 0 16px; } }
+
+/* ── Section spacing ── */
+.section { padding: 56px 0; }
+.section-sm { padding: 32px 0; }
+@media (max-width: 768px) { .section { padding: 36px 0; } .section-sm { padding: 20px 0; } }
+
+/* ── Typography ── */
+.section-title { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 20px; }
+.section-sub { font-size: 14px; color: var(--text-muted); margin-top: -14px; margin-bottom: 20px; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  border-radius: 999px; font-weight: 600; font-family: var(--font);
+  transition: opacity .15s, background .15s; cursor: pointer; border: none;
+  font-size: 14px; padding: 10px 22px; white-space: nowrap;
+}
+.btn-primary   { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline   { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-outline-green { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-outline-green:hover { background: var(--primary-light); }
+.btn-ghost     { background: transparent; color: var(--text-secondary); }
+.btn-sm        { font-size: 13px; padding: 7px 16px; }
+.btn-lg        { font-size: 15px; padding: 13px 28px; }
+.btn-full      { width: 100%; }
+
+/* ── Inputs ── */
+.input-wrap { display: flex; flex-direction: column; gap: 5px; }
+.input-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+.input {
+  width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 9px 12px; font-size: 14px; color: var(--text-primary);
+  background: #fff; outline: none; transition: border-color .15s;
+  font-family: var(--font);
+}
+.input:focus { border-color: var(--primary); }
+.input::placeholder { color: var(--text-muted); }
+select.input { cursor: pointer; }
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Chip / tag ── */
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 6px 16px; border-radius: 999px;
+  border: 1.5px solid var(--border); background: #fff;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: all .15s; white-space: nowrap; color: var(--text-primary);
+}
+.chip.active, .chip:hover { border-color: var(--primary); background: var(--primary); color: #fff; }
+
+/* ── Star row ── */
+.stars { display: inline-flex; gap: 2px; }
+
+/* ── Divider ── */
+.divider { border: none; border-top: 1px solid var(--border-light); margin: 16px 0; }
+
+/* ── Scroll row ── */
+.scroll-row { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; }
+.scroll-row::-webkit-scrollbar { display: none; }
+
+/* ── Grid helpers ── */
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+  .grid-3 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ── Badge ── */
+.badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.badge-green  { background: var(--primary); color: #fff; }
+.badge-orange { background: var(--orange); color: #fff; }
+.badge-red    { background: var(--red); color: #fff; }
+.badge-light  { background: var(--primary-light); color: var(--primary); }
+
+/* ── Stepper ── */
+.stepper { display: flex; align-items: center; gap: 0; margin-bottom: 32px; }
+.step-node { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.step-circle {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; border: 2px solid #ccc; background: #fff; color: #aaa;
+}
+.step-circle.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.step-circle.done   { background: var(--primary); border-color: var(--primary); color: #fff; }
+.step-label { font-size: 11px; color: #aaa; white-space: nowrap; }
+.step-label.active { color: var(--primary); font-weight: 600; }
+.step-line { flex: 1; height: 2px; background: #e0e0e0; margin: 0 4px; margin-bottom: 18px; }
+.step-line.done { background: var(--primary); }
+
+/* ── Sidebar layout ── */
+.sidebar-layout { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start; }
+.sidebar-layout-right { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+@media (max-width: 900px) {
+  .sidebar-layout, .sidebar-layout-right { grid-template-columns: 1fr; }
+}
+
+/* ── Page inner card ── */
+.page-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+}
+@media (max-width: 640px) { .page-card { padding: 16px; } }
+
+/* ── Sticky top ── */
+.sticky-top { position: sticky; top: var(--nav-height); z-index: 40; }
+
+/* ── misc ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
