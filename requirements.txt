@@ -9,3 +9,4 @@ pyjwt>=2.9.0
 argon2-cffi>=23.1.0
 python-multipart>=0.0.9
 certifi>=2024.0.0
+email-validator>=2.0.0
