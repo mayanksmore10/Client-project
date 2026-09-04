@@ -24,6 +24,8 @@ class RoomSelection(BaseModel):
     count: int = 1
 
 
+
+
 class PriceBreakdown(BaseModel):
     price_per_person: float = 0
     adult_count: int = 0
