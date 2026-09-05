@@ -8,7 +8,14 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-_client = genai.Client(api_key=settings.gemini_api_key)
+def _get_client():
+    if not settings.gemini_api_key:
+        return None
+    try:
+        return genai.Client(api_key=settings.gemini_api_key)
+    except Exception as exc:
+        logger.error("Failed to initialize genai.Client in embedding_service: %s", exc)
+        return None
 
 
 def _packageToEmbeddingText(package: dict) -> str:
@@ -34,9 +41,13 @@ async def embedQuery(query: str) -> list[float]:
 
 
 async def _embedText(text: str, task_type: str) -> list[float]:
+    client = _get_client()
+    if not client:
+        logger.warning("Gemini client unavailable for embedding generation.")
+        return []
     try:
         result = await asyncio.to_thread(
-            _client.models.embed_content,
+            client.models.embed_content,
             model=settings.gemini_embedding_model,
             contents=text,
             config=types.EmbedContentConfig(
@@ -47,4 +58,4 @@ async def _embedText(text: str, task_type: str) -> list[float]:
         return result.embeddings[0].values
     except Exception as exc:
         logger.error("Embedding generation failed: %s", exc)
-        raise
+        return []

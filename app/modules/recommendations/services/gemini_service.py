@@ -9,7 +9,15 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-_client = genai.Client(api_key=settings.gemini_api_key)
+def _get_client():
+    if not settings.gemini_api_key:
+        return None
+    try:
+        return genai.Client(api_key=settings.gemini_api_key)
+    except Exception as exc:
+        logger.error("Failed to initialize genai.Client in gemini_service: %s", exc)
+        return None
+
 
 _PARSE_SYSTEM_PROMPT = """You extract structured travel search fields from a user's \
 free-text request. Respond with ONLY a JSON object, no markdown fences, no prose, \
@@ -41,9 +49,13 @@ separate part of the system renders the package cards."""
 
 
 async def parseQuery(query: str) -> dict:
+    client = _get_client()
+    if not client:
+        logger.warning("Gemini client unavailable for query parsing.")
+        return {}
     try:
         response = await asyncio.to_thread(
-            _client.models.generate_content,
+            client.models.generate_content,
             model=settings.gemini_generation_model,
             contents=query,
             config=types.GenerateContentConfig(
@@ -59,6 +71,10 @@ async def parseQuery(query: str) -> dict:
 
 
 async def generateRecommendation(query: str, retrieved_packages: list[dict]) -> str:
+    client = _get_client()
+    if not client:
+        return "I found matching packages for your query. Please explore the options below."
+
     if not retrieved_packages:
         return (
             "I couldn't find any packages in our catalog that closely match your "
@@ -88,7 +104,7 @@ async def generateRecommendation(query: str, retrieved_packages: list[dict]) -> 
 
     try:
         response = await asyncio.to_thread(
-            _client.models.generate_content,
+            client.models.generate_content,
             model=settings.gemini_generation_model,
             contents=prompt,
             config=types.GenerateContentConfig(

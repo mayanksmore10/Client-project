@@ -2,12 +2,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    mongodb_uri: str
+    mongodb_uri: str = ""
     mongodb_db_name: str = "tours_db"
     mongodb_collection_name: str = "packages"
     vector_index_name: str = "package_vector_index"
 
-    gemini_api_key: str
+    gemini_api_key: str = ""
     gemini_embedding_model: str = "text-embedding-004"
     gemini_generation_model: str = "gemini-1.5-flash"
 
@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
-    jwt_secret_key: str
+    jwt_secret_key: str = "sahyadri_default_secret_key_change_in_production"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24
     cookie_secure: bool = False

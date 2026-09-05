@@ -8,6 +8,9 @@ logger = logging.getLogger(__name__)
 
 
 async def vectorSearch(query_embedding: list[float], top_k: int | None = None) -> list[dict[str, Any]]:
+    if not query_embedding:
+        return []
+
     k = top_k or settings.vector_search_top_k
 
     pipeline = [
@@ -28,9 +31,59 @@ async def vectorSearch(query_embedding: list[float], top_k: int | None = None) -
         },
     ]
 
-    collection = TourPackage.get_motor_collection()
-    cursor = collection.aggregate(pipeline)
-    return await cursor.to_list(length=k)
+    try:
+        collection = TourPackage.get_motor_collection()
+        cursor = collection.aggregate(pipeline)
+        return await cursor.to_list(length=k)
+    except Exception as exc:
+        logger.warning("MongoDB Vector Search failed: %s. Falling back to database keyword search.", exc)
+        return []
+
+
+async def fallbackSearch(
+    query: str,
+    parsed_query: dict[str, Any],
+    top_k: int = 10,
+) -> list[dict[str, Any]]:
+    """Fallback search when vector search index or embeddings are unavailable."""
+    conditions = []
+
+    destination = (parsed_query.get("destination") or "").strip()
+    if destination:
+        conditions.append({"destination": {"$regex": destination, "$options": "i"}})
+        conditions.append({"title": {"$regex": destination, "$options": "i"}})
+
+    stop_words = {
+        "a", "an", "the", "in", "on", "at", "to", "for", "of", "and", "or",
+        "is", "with", "trip", "tour", "tours", "package", "packages", "best", "want"
+    }
+    raw_words = [
+        w.strip() for w in query.split()
+        if len(w.strip()) >= 2 and w.lower().strip() not in stop_words
+    ]
+
+    for word in raw_words:
+        conditions.append({"destination": {"$regex": word, "$options": "i"}})
+        conditions.append({"title": {"$regex": word, "$options": "i"}})
+        conditions.append({"inclusions": {"$elemMatch": {"$regex": word, "$options": "i"}}})
+        conditions.append({"itinerary": {"$elemMatch": {"$regex": word, "$options": "i"}}})
+
+    mongo_filter = {"$or": conditions} if conditions else {}
+
+    try:
+        collection = TourPackage.get_motor_collection()
+        packages = await collection.find(mongo_filter, {"embedding": 0}).to_list(length=top_k * 2)
+
+        if not packages and mongo_filter:
+            packages = await collection.find({}, {"embedding": 0}).limit(top_k).to_list(length=top_k)
+
+        for pkg in packages:
+            pkg["score"] = 0.5
+
+        return packages
+    except Exception as exc:
+        logger.error("Fallback MongoDB search failed: %s", exc)
+        return []
 
 
 def applyStructuredRanking(
